@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Text, View } from "react-native";
 import { styles } from "./index.styles";
 import Search from "/assets/icons/search.svg";

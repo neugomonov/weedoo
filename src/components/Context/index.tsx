@@ -27,6 +27,7 @@ export const PlaceContextProvider = (props: any) => {
       reverseGeocodedPlace: reverseGeocodedPlace,
     });
   };
+
   const initPlaceState = {
     place: INITIAL_LAT_LNG,
     setPlace: setPlace,

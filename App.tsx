@@ -40,12 +40,13 @@ function App() {
   }, []);
   useEffect(() => {
     console.log("There's the place: ", placeState.place);
-    console.log();
-    fetchedFormattedAddress();
-    console.log(
-      "🚀 ~ file: App.tsx:49 ~ useEffect ~ fetchedFormattedAddress",
-      fetchedFormattedAddress()
-    );
+    fetchedFormattedAddress(placeState.place);
+    const getFetchedFormattedAddress = async () =>
+      console.log(
+        "🚀 ~ file: App.tsx:49 ~ useEffect ~ fetchedFormattedAddress",
+        await fetchedFormattedAddress(placeState.place)
+      );
+    getFetchedFormattedAddress();
   }, [placeState.place]);
   const [currentLocation, setCurrentLocation] = useState<LatLng | null>();
   const [fontsLoaded] = useFonts({

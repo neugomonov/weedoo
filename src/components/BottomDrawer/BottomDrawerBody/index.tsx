@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Text, View } from "react-native";
 import { styles } from "./index.styles";
 import MarkerIcon from "/assets/icons/marker.svg";
@@ -12,7 +12,7 @@ import { InputWithAutocompleteAndLiner } from "/components/InputWithAutocomplete
 import { GooglePlaceDetail } from "/components/MapsAutocomplete";
 import { fetchedFormattedAddress } from "/helpers/fetchedFormattedAddress";
 
-const BottomDrawerBody = () => {
+const BottomDrawerBody = React.memo(() => {
   const reverseGeocodedPlaceState: reverseGeocodedPlaceStateType =
     // @ts-expect-error - Object is of type 'unknown'.ts(2571)
     useContext(PlaceContext)[1];
@@ -25,24 +25,26 @@ const BottomDrawerBody = () => {
     };
     fetchedFormattedAddress(position);
     placeState.setPlace(position);
+    const fetchedFormattedAddressRes = await fetchedFormattedAddress(position);
     reverseGeocodedPlaceState.setReverseGeocodedPlace(
-      await fetchedFormattedAddress(placeState.place)
+      fetchedFormattedAddressRes
     );
-    // moveTo(position);
+    // ! moveTo(position);
   };
+  useEffect(() => {
+    async () => await onPlaceSelected(placeState.place);
+    async () => await onPrimaryButtonPress;
+    return () => {};
+  }, [placeState.place, reverseGeocodedPlaceState.reverseGeocodedPlace]);
   const onPrimaryButtonPress = async () => {
     fetchedFormattedAddress(placeState.place);
     reverseGeocodedPlaceState.setReverseGeocodedPlace(
       await fetchedFormattedAddress(placeState.place)
     );
     console.log(
-      `🌎 Адрес текстом: "${
-        reverseGeocodedPlaceState.reverseGeocodedPlace
-      }" + 📍 Координаты: "${
+      `🌎 Адрес текстом: "${await fetchedFormattedAddress(
         placeState.place
-          ? JSON.stringify(placeState.place)
-          : JSON.stringify(placeState.place)
-      }" `
+      )}" + 📍 Координаты: "${JSON.stringify(placeState.place)}" `
     );
   };
   return (
@@ -66,6 +68,6 @@ const BottomDrawerBody = () => {
       </View>
     </View>
   );
-};
+});
 
 export default BottomDrawerBody;
