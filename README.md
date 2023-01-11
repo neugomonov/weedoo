@@ -1,5 +1,5 @@
 <div align="center">
-	<h1>WeDo</h1>
+	<h1>WeeDoo</h1>
     👷‍♀️ wurk in prograss 
 
 WeDo is cool and good.
