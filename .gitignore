@@ -65,3 +65,4 @@ web-build/
 
 # Env
 environments.ts
+/src/.env

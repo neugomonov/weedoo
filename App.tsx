@@ -5,7 +5,7 @@ import React, { useCallback, useContext, useEffect } from "react";
 import { View } from "react-native";
 import Geocoder from "react-native-geocoding";
 import { styles } from "./App.styles";
-import { GOOGLE_API_KEY } from "./src/environments";
+import { GOOGLE_API_KEY } from "/environments";
 import { BottomDrawer } from "/components/BottomDrawer";
 import BottomDrawerBody from "/components/BottomDrawer/BottomDrawerBody";
 import { LocateMe } from "/components/Buttons/LocateMe";

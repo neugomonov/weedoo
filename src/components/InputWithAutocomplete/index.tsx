@@ -1,6 +1,6 @@
 import { Text } from "@rneui/themed";
 import React from "react";
-import { GOOGLE_API_KEY } from "../../environments";
+import { GOOGLE_API_KEY } from "/environments";
 import { styles } from "./index.styles";
 import {
   GooglePlaceDetail,

@@ -12,10 +12,19 @@ module.exports = function (api) {
             '/components': './src/components',
             '/assets': './src/assets',
             '/helpers': './src/helpers',
-            '/constants': './src/constants'
+            '/constants': './src/constants',
+            '/environments': './src/environments'
           }
         }
-      ]
+      ],
+      ['module:react-native-dotenv', {
+        'moduleName': '',
+        'path': './src/environments',
+        'blacklist': null,
+        'whitelist': null,
+        'safe': false,
+        'allowUndefined': true
+    }]
     ]
   }
 }

@@ -1,5 +1,5 @@
 import { LatLng } from "react-native-maps";
-import { GOOGLE_API_KEY } from "../../src/environments";
+import { GOOGLE_API_KEY } from "/environments";
 
 export const fetchedFormattedAddress = async (place: LatLng) => {
   if (place) {
