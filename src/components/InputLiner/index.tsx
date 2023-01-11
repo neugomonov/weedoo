@@ -1,7 +1,7 @@
 import { MapsAutocompleteRef } from "/components/MapsAutocomplete";
 import { Input } from "@rneui/themed";
-import Close from "/assets/close.svg";
-import Search from "/assets/search.svg";
+import Close from "/assets/icons/close.svg";
+import Search from "/assets/icons/search.svg";
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import InsetShadow from "react-native-inset-shadow";

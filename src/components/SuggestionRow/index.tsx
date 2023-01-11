@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Search from "assets/search.svg";
+import Search from "/assets/icons/search.svg";
 import { styles } from "./index.styles";
 
 const SuggestionRow = ({ item }) => {
