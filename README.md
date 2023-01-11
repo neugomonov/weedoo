@@ -27,8 +27,8 @@ There will be some assets 🖼
 - Made *stylish**er*** with [Styled Components](https://styled-components.com/)
 - Made *navigational* with [React Navigation](https://reactnavigation.org/)
 
-Опа, вот я говорю на русском
-Poof, English now
-Και τώρα ελληνικό. Απροσδόκητο, σωστά;
+Опа, вот я говорю на русском  
+Poof, English now  
+Και τώρα ελληνικό. Απροσδόκητο, σωστά;  
 
 <b> hold up 👷‍♀️</b>
