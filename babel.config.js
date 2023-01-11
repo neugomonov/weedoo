@@ -1,6 +1,22 @@
-module.exports = function(api) {
-  api.cache(true);
+module.exports = function (api) {
+  api.cache(true)
   return {
     presets: ['babel-preset-expo'],
-  };
-};
+    plugins: [
+      [
+        'module-resolver',
+        {
+          root: ['./src'],
+          alias: {
+            // This needs to be mirrored in tsconfig.json
+            '/components': './src/components',
+            '/redux': './src/redux',
+            '/assets': './src/assets',
+            '/helpers': './src/helpers',
+            '/constants': './src/constants'
+          }
+        }
+      ]
+    ]
+  }
+}

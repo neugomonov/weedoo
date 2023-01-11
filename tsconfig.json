@@ -1,4 +1,28 @@
 {
-  "compilerOptions": {},
-  "extends": "expo/tsconfig.base"
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src"
+  },
+  "extends": "expo/tsconfig.base",
+  "include": [
+    "./App.tsx",
+    "declarations.d.ts",
+    "./src/**/*",
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.tsx",
+    "./src/**/*",
+    "src/**/*",
+    "src/**/*.*"
+  ],
+  "paths": {
+    "/components/*": ["./src/components"],
+    "/redux/*": ["./src/redux"],
+    "/assets/*": ["./src/assets"],
+    "/helpers/*": ["./src/helpers"],
+    "/constants/*": ["./src/constants"]
+  }
 }
