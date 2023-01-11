@@ -21,9 +21,5 @@ export const getLocation = async () => {
     coords: { latitude, longitude },
   } = await Location.getCurrentPositionAsync();
   let currentLocation: LatLng = { latitude: latitude, longitude: longitude };
-  console.log(
-    "🚀 ~ file: locationPermission.ts:28 ~ getLocation ~ currentLocation",
-    currentLocation
-  );
   return currentLocation;
 };

@@ -39,7 +39,6 @@ export const LocateServiceMap = () => {
     reverseGeocodedPlaceState.setReverseGeocodedPlace(
       fetchedFormattedAddressRes
     );
-    console.log("🌎 onMapViewPress ", placeState.place);
   };
   const onLocationMarkerDragEndHandler = async (e: MarkerDragStartEndEvent) => {
     placeState.setPlace(e.nativeEvent.coordinate);
@@ -49,7 +48,6 @@ export const LocateServiceMap = () => {
     reverseGeocodedPlaceState.setReverseGeocodedPlace(
       fetchedFormattedAddressRes
     );
-    console.log("📍 onLocationMarkerDragEndHandler ", placeState.place);
   };
   const moveTo = async (position: LatLng) => {
     const camera = await mapRef.current?.getCamera();

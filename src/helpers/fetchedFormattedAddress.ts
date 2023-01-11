@@ -13,10 +13,6 @@ export const fetchedFormattedAddress = async (place: LatLng) => {
     );
     const res = (await reverseGeocodedPlace.json()).results[0]
       .formatted_address;
-    console.log(
-      "🚀 ~ file: fetchedFormattedAddress.ts:16 ~ fetchedFormattedAddress ~ res",
-      res
-    );
     return res;
   }
 };

@@ -30,24 +30,9 @@ export const LocateMe: FC<LocateMeProps> = (props) => {
       fetchedFormattedAddressRes
     );
     // ! moveTo(getLocationRes);
-    console.log(
-      "🚀 ~ file: index.tsx:17 ~ onNavigatePress ~ getLocation()",
-      await getLocation()
-    );
-    console.log(
-      "🚀 ~ file: index.tsx:22 ~ onNavigatePress ~ reverseGeocodedPlaceState.reverseGeocodedPlace",
-      fetchedFormattedAddressRes
-    );
   };
   useEffect(() => {
-    console.log("There's the place: ", placeState.place);
     fetchedFormattedAddress(placeState.place);
-    const getFetchedFormattedAddress = async () =>
-      console.log(
-        "🚀 ~ file: App.tsx:49 ~ useEffect ~ fetchedFormattedAddress",
-        await fetchedFormattedAddress(placeState.place)
-      );
-    getFetchedFormattedAddress();
   }, [placeState.place]);
   return (
     <View

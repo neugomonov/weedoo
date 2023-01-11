@@ -31,22 +31,10 @@ function App() {
     useContext(PlaceContext)[1];
   useEffect(() => {
     checkPermission();
-    const getCurrentLocation = async () => {
-      console.log("accessing currentLocation from App ", await getLocation());
-    };
-    getCurrentLocation();
     setCurrentLocation(getLocation());
-    console.log("There's the currentLocation ", currentLocation);
   }, []);
   useEffect(() => {
-    console.log("There's the place: ", placeState.place);
     fetchedFormattedAddress(placeState.place);
-    const getFetchedFormattedAddress = async () =>
-      console.log(
-        "🚀 ~ file: App.tsx:49 ~ useEffect ~ fetchedFormattedAddress",
-        await fetchedFormattedAddress(placeState.place)
-      );
-    getFetchedFormattedAddress();
   }, [placeState.place]);
   const [currentLocation, setCurrentLocation] = useState<LatLng | null>();
   const [fontsLoaded] = useFonts({
