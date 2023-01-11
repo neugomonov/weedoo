@@ -1,36 +1,30 @@
-# TypeScript Example
+<div align="center">
+	<h1>WeDo</h1>
+    👷‍♀️ wurk in prograss 
 
-<p>
-  <!-- iOS -->
-  <img alt="Supports Expo iOS" longdesc="Supports Expo iOS" src="https://img.shields.io/badge/iOS-4630EB.svg?style=flat-square&logo=APPLE&labelColor=999999&logoColor=fff" />
-  <!-- Android -->
-  <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
-  <!-- Web -->
-  <img alt="Supports Expo Web" longdesc="Supports Expo Web" src="https://img.shields.io/badge/web-4630EB.svg?style=flat-square&logo=GOOGLE-CHROME&labelColor=4285F4&logoColor=fff" />
-</p>
+WeDo is cool and good.
 
-```sh
-npx create-react-native-app -t with-typescript
-```
+<h2>Screenshots</h2>
 
-TypeScript is a superset of JavaScript which gives you static types and powerful tooling in Visual Studio Code including autocompletion and useful inline warnings for type errors.
+⚒  
+<img src="screenshots/screenshot1.png" width="405"/>  
+<img src="screenshots/screenshot2.png" width="405"/>  
+<img src="screenshots/screenshot3.png" width="405"/>  
+<img src="screenshots/screenshot4.png" width="405"/>
+<br>
+<img src="eas-update.svg"/>  
+⚒  
+There will be some assets 🖼  
 
-## 🚀 How to use
+</div>
 
-#### Creating a new project
+## Tech Stack
 
-- Install the CLI: `npm i -g expo-cli`
-- Create a project: `npx create-react-native-app -t with-typescript`
-- `cd` into the project
+- Made *fast* with [React](https://reactjs.org/)
+- Made *mobile* with [React Native](https://reactnative.dev/)
+- Made *mobile**r*** with [Expo](https://expo.dev/)
+- Made *stylish* with [React Native Elements](https://reactnativeelements.com/)
+- Made *stylish**er*** with [Styled Components](https://styled-components.com/)
+- Made *navigational* with [React Navigation](https://reactnavigation.org/)
 
-### Adding TypeScript to existing projects
-
-- Create a blank TypeScript config: `touch tsconfig.json`
-- Run `yarn start` or `npm run start` to automatically configure TypeScript
-- Rename files to TypeScript, `.tsx` for React components and `.ts` for plain typescript files
-
-> 💡 You can disable the TypeScript setup in Expo CLI with the environment variable `EXPO_NO_TYPESCRIPT_SETUP=1 expo start`
-
-## 📝 Notes
-
-- [Expo TypeScript guide](https://docs.expo.dev/versions/latest/guides/typescript/)
+<b> hold up 👷‍♀️</b>
