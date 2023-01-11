@@ -1,5 +1,3 @@
-import { animateMove, getNextState } from "/helpers/drawer";
-import { DrawerState } from "/constants";
 import React, { FC, useRef } from "react";
 import {
   Animated,
@@ -9,6 +7,8 @@ import {
   PanResponderGestureState,
 } from "react-native";
 import { HorizontalLine } from "./index.styles";
+import { DrawerState } from "/constants";
+import { animateMove, getNextState } from "/helpers/drawer";
 
 type BottomDrawerProps = {
   children?: React.ReactNode;

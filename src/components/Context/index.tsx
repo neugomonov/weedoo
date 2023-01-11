@@ -39,7 +39,6 @@ export const PlaceContextProvider = (props: any) => {
   const [reverseGeocodedPlaceState, setReverseGeocodedPlaceState] = useState(
     initReverseGeocodedPlaceState
   );
-
   return (
     <PlaceContext.Provider value={[placeState, reverseGeocodedPlaceState]}>
       {props.children}

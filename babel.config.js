@@ -10,7 +10,6 @@ module.exports = function (api) {
           alias: {
             // This needs to be mirrored in tsconfig.json
             '/components': './src/components',
-            '/redux': './src/redux',
             '/assets': './src/assets',
             '/helpers': './src/helpers',
             '/constants': './src/constants'

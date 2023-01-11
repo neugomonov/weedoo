@@ -1,5 +1,5 @@
-import ArrowBack from "assets/icons/arrow-back.svg";
 import { Text } from "@rneui/themed";
+import ArrowBack from "assets/icons/arrow-back.svg";
 import React, { FC } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { styles } from "./index.styles";
