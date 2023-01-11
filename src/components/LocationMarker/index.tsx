@@ -1,4 +1,4 @@
-import MarkerIcon from "assets/marker.svg";
+import MarkerIcon from "assets/icons/marker.svg";
 import React, { FC, useEffect, useRef, useState } from "react";
 import { Platform } from "react-native";
 import {
