@@ -1,4 +1,4 @@
-import Navigate from "/assets/navigate.svg";
+import Navigate from "/assets/icons/navigate.svg";
 import { getLocation } from "/helpers/locationPermission";
 import React, { useContext, useState } from "react";
 import { TouchableOpacity, View } from "react-native";

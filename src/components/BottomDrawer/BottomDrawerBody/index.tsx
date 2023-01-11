@@ -1,4 +1,4 @@
-import MarkerIcon from "/assets/marker.svg";
+import MarkerIcon from "/assets/icons/marker.svg";
 import { PrimaryButton } from "/components/Buttons/PrimaryButton";
 import { InputWithAutocompleteAndLiner } from "/components/InputWithAutocompleteAndLiner";
 import { GooglePlaceDetail } from "/components/MapsAutocomplete";
