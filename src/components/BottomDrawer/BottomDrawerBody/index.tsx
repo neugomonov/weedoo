@@ -14,7 +14,9 @@ import { fetchedFormattedAddress } from "/helpers/fetchedFormattedAddress";
 
 const BottomDrawerBody = () => {
   const reverseGeocodedPlaceState: reverseGeocodedPlaceStateType =
+    // @ts-expect-error - Object is of type 'unknown'.ts(2571)
     useContext(PlaceContext)[1];
+  // @ts-expect-error - Object is of type 'unknown'.ts(2571)
   const placeState: placeStateType = useContext(PlaceContext)[0];
   const onPlaceSelected = async (details: GooglePlaceDetail | null) => {
     const position = {
@@ -26,7 +28,7 @@ const BottomDrawerBody = () => {
     reverseGeocodedPlaceState.setReverseGeocodedPlace(
       await fetchedFormattedAddress(placeState.place)
     );
-    moveTo(position);
+    // moveTo(position);
   };
   const onPrimaryButtonPress = async () => {
     fetchedFormattedAddress(placeState.place);

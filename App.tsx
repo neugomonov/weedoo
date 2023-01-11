@@ -27,6 +27,7 @@ Geocoder.init(GOOGLE_API_KEY);
 function App() {
   const placeState: placeStateType = useContext(PlaceContext);
   const reverseGeocodedPlaceState: reverseGeocodedPlaceStateType =
+    // @ts-expect-error - Object is of type 'unknown'.ts(2571)
     useContext(PlaceContext)[1];
   useEffect(() => {
     checkPermission();

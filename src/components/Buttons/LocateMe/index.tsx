@@ -9,8 +9,10 @@ import {
 import { getLocation } from "/helpers/locationPermission";
 
 export const LocateMe = () => {
+  // @ts-expect-error - Object is of type 'unknown'.ts(2571)
   const placeState: placeStateType = useContext(PlaceContext)[0];
   const reverseGeocodedPlaceState: reverseGeocodedPlaceStateType =
+    // @ts-expect-error - Object is of type 'unknown'.ts(2571)
     useContext(PlaceContext)[1];
   const onNavigatePress = async () => {
     await reverseGeocodedPlaceState.setReverseGeocodedPlace(

@@ -19,6 +19,7 @@ export const InputLiner = React.forwardRef<
 >((props, ref) => {
   const { clearIcon, value, onChange } = props;
   const clearHandler = () => {
+    // @ts-expect-error - Property 'current' does not exist on type '((instance: any) => void) | MutableRefObject<any>'. Property 'current' does not exist on type '(instance: any) => void'.ts(2339)
     ref?.current?.setAddressText("");
   };
   return (

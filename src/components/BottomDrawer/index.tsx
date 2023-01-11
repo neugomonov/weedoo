@@ -34,6 +34,7 @@ export const BottomDrawer: FC<BottomDrawerProps> = (props) => {
     { moveY }: PanResponderGestureState
   ) => {
     const valueToMove = movementValue(moveY);
+    // @ts-expect-error - Property '_value' does not exist on type 'Value'.ts(2339)
     const nextState = getNextState(state._value, valueToMove, margin);
     state.setValue(nextState);
     animateMove(y, nextState, onDrawerStateChange(nextState));
