@@ -22,7 +22,7 @@ export const InputWithAutocomplete = React.forwardRef<
 >((props, ref) => {
   const { textValue, onPlaceSelected, setClearIcon } = props;
   const pressHandler: MapsAutocompleteProps["onPress"] = (
-    _,
+    _: any,
     details = null
   ) => {
     onPlaceSelected(details);

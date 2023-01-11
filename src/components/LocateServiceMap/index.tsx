@@ -1,4 +1,9 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from "react";
 import { Dimensions } from "react-native";
 import Constants from "expo-constants";
 import MapView, {
@@ -15,22 +20,33 @@ import {
 import { LocationMarker } from "/components/LocationMarker";
 import { INITIAL_POSITION } from "/constants";
 import { fetchedFormattedAddress } from "/helpers/fetchedFormattedAddress";
+import { MapViewNativeComponentType } from "react-native-maps/lib/MapViewNativeComponent";
 
-export type LocateServiceMapProps = {
-  textValue: string;
-};
+export type LocateServiceMapProps = {};
 
-export type LocateServiceMap = {
-  onPlaceSelected: LocateServiceMapProps["onPlaceSelected"];
-};
-
-export const LocateServiceMap = () => {
+export const LocateServiceMap = React.forwardRef<
+  React.RefObject<MapViewNativeComponentType>,
+  LocateServiceMapProps
+>((props, ref) => {
+  const {} = props;
   const mapRef = useRef<MapView>(null);
+  const moveTo = async (position: LatLng) => {
+    const camera = await mapRef.current?.getCamera();
+    if (camera) {
+      camera.center = position;
+      mapRef.current?.animateCamera(camera, { duration: 1000 });
+    }
+  };
+
   // @ts-expect-error - Object is of type 'unknown'.ts(2571)
   const placeState: placeStateType = useContext(PlaceContext)[0];
   const reverseGeocodedPlaceState: reverseGeocodedPlaceStateType =
     // @ts-expect-error - Object is of type 'unknown'.ts(2571)
     useContext(PlaceContext)[1];
+  useEffect(() => {
+    moveTo(placeState.place);
+    return () => {};
+  }, [placeState.place]);
   const onMapViewPress = async (e: MapPressEvent) => {
     placeState.setPlace(e.nativeEvent.coordinate);
     const fetchedFormattedAddressRes = await fetchedFormattedAddress(
@@ -49,13 +65,6 @@ export const LocateServiceMap = () => {
       fetchedFormattedAddressRes
     );
   };
-  const moveTo = async (position: LatLng) => {
-    const camera = await mapRef.current?.getCamera();
-    if (camera) {
-      camera.center = position;
-      mapRef.current?.animateCamera(camera, { duration: 1000 });
-    }
-  };
   return (
     <MapView
       ref={mapRef}
@@ -70,7 +79,6 @@ export const LocateServiceMap = () => {
       followsUserLocation={true}
       onPress={(e: MapPressEvent) => {
         onMapViewPress(e);
-        moveTo(e.nativeEvent.coordinate);
       }}
     >
       {placeState.place ? (
@@ -78,12 +86,11 @@ export const LocateServiceMap = () => {
           coordinate={placeState.place}
           onDragEnd={(e: MarkerDragStartEndEvent) => {
             onLocationMarkerDragEndHandler(e);
-            moveTo(e.nativeEvent.coordinate);
           }}
         />
       ) : null}
     </MapView>
   );
-};
+});
 
 export default LocateServiceMap;

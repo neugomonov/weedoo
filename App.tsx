@@ -1,10 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import { View } from "react-native";
 import Geocoder from "react-native-geocoding";
-import { LatLng } from "react-native-maps";
 import { styles } from "./App.styles";
 import { GOOGLE_API_KEY } from "./src/environments";
 import { BottomDrawer } from "/components/BottomDrawer";
@@ -14,29 +13,23 @@ import {
   PlaceContext,
   PlaceContextProvider,
   placeStateType,
-  reverseGeocodedPlaceStateType,
 } from "/components/Context";
 import { Header } from "/components/Header";
 import { LocateServiceMap } from "/components/LocateServiceMap";
 import { fetchedFormattedAddress } from "/helpers/fetchedFormattedAddress";
-import { checkPermission, getLocation } from "/helpers/locationPermission";
+import { checkPermission } from "/helpers/locationPermission";
 import { onDrawerStateChange } from "/helpers/onDrawerStateChange";
 
 Geocoder.init(GOOGLE_API_KEY);
 
 function App() {
   const placeState: placeStateType = useContext(PlaceContext);
-  const reverseGeocodedPlaceState: reverseGeocodedPlaceStateType =
-    // @ts-expect-error - Object is of type 'unknown'.ts(2571)
-    useContext(PlaceContext)[1];
   useEffect(() => {
     checkPermission();
-    setCurrentLocation(getLocation());
   }, []);
   useEffect(() => {
     fetchedFormattedAddress(placeState.place);
   }, [placeState.place]);
-  const [currentLocation, setCurrentLocation] = useState<LatLng | null>();
   const [fontsLoaded] = useFonts({
     "Montserrat-ExtraBold": require("assets/fonts/Montserrat-ExtraBold.ttf"),
     "Montserrat-Medium": require("assets/fonts/Montserrat-Medium.ttf"),

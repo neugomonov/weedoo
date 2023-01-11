@@ -29,19 +29,13 @@ const BottomDrawerBody = React.memo(() => {
     reverseGeocodedPlaceState.setReverseGeocodedPlace(
       fetchedFormattedAddressRes
     );
-    // ! moveTo(position);
   };
-  useEffect(() => {
-    async () => await onPlaceSelected(placeState.place);
-    async () => await onPrimaryButtonPress;
-    return () => {};
-  }, [placeState.place, reverseGeocodedPlaceState.reverseGeocodedPlace]);
   const onPrimaryButtonPress = async () => {
     fetchedFormattedAddress(placeState.place);
     reverseGeocodedPlaceState.setReverseGeocodedPlace(
       await fetchedFormattedAddress(placeState.place)
     );
-    console.log(
+    console.info(
       `🌎 Адрес текстом: "${await fetchedFormattedAddress(
         placeState.place
       )}" + 📍 Координаты: "${JSON.stringify(placeState.place)}" `

@@ -9,12 +9,9 @@ import {
 import { fetchedFormattedAddress } from "/helpers/fetchedFormattedAddress";
 import { getLocation } from "/helpers/locationPermission";
 
-export type LocateMeProps = {
-  moveTo: () => void;
-};
+export type LocateMeProps = {};
 
 export const LocateMe: FC<LocateMeProps> = (props) => {
-  const { moveTo } = props;
   // @ts-expect-error - Object is of type 'unknown'.ts(2571)
   const placeState: placeStateType = useContext(PlaceContext)[0];
   const reverseGeocodedPlaceState: reverseGeocodedPlaceStateType =
@@ -29,7 +26,6 @@ export const LocateMe: FC<LocateMeProps> = (props) => {
     reverseGeocodedPlaceState.setReverseGeocodedPlace(
       fetchedFormattedAddressRes
     );
-    // ! moveTo(getLocationRes);
   };
   useEffect(() => {
     fetchedFormattedAddress(placeState.place);
