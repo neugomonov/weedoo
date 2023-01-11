@@ -41,7 +41,15 @@ export const PlaceContextProvider = (props: any) => {
   );
 
   return (
-    <PlaceContext.Provider value={[placeState, reverseGeocodedPlaceState]}>
+    <PlaceContext.Provider
+      value={{
+        placeState: [placeState, setPlaceState],
+        reverseGeocodedPlaceState: [
+          reverseGeocodedPlaceState,
+          setReverseGeocodedPlaceState,
+        ],
+      }}
+    >
       {props.children}
     </PlaceContext.Provider>
   );

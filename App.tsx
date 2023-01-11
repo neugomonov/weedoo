@@ -28,6 +28,7 @@ import {
   PlaceContext,
   PlaceContextProvider,
   placeStateType,
+  reverseGeocodedPlaceStateType,
 } from "/components/Context";
 
 Geocoder.init(GOOGLE_API_KEY);
@@ -41,7 +42,16 @@ const AppWrapper = () => {
 };
 
 function App() {
-  const placeState: placeStateType = useContext(PlaceContext);
+  const {
+    placeState,
+    reverseGeocodedPlaceState,
+  }: {
+    placeState: placeStateType;
+    reverseGeocodedPlaceState: reverseGeocodedPlaceStateType;
+  } = useContext(PlaceContext);
+  const [place, setPlace] = placeState;
+  const [reverseGeocodedPlace, setReverseGeocodedPlace] =
+    reverseGeocodedPlaceState;
   const inputRef = useRef();
   // const [place, setPlace] = useState<LatLng | null>();
   useEffect(() => {
@@ -55,18 +65,18 @@ function App() {
   }, []);
   // ! helpers fetchedFormattedAddress
   useEffect(() => {
-    console.log("There's the place: ", placeState.place);
+    console.log("There's the place: ", place);
     console.log();
     fetchedFormattedAddress();
     console.log(
       "🚀 ~ file: App.tsx:49 ~ useEffect ~ fetchedFormattedAddress",
       fetchedFormattedAddress()
     );
-  }, [placeState.place]);
+  }, [place]);
   // ! helpers checkPermission askPermission
   const [currentLocation, setCurrentLocation] = useState<LatLng | null>();
   // ! helpers getLocation
-  const [reverseGeocodedPlace, setReverseGeocodedPlace] = useState(null);
+  // const [reverseGeocodedPlace, setReverseGeocodedPlace] = useState(null);
   // ! helpers onDrawerStateChange
   // ! helpers fonts ?
   const [fontsLoaded] = useFonts({

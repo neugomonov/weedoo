@@ -15,11 +15,19 @@ import {
 
 const BottomDrawerBody = () => {
   // const [reverseGeocodedPlace, setReverseGeocodedPlace] = useState("");
-  const reverseGeocodedPlaceState: reverseGeocodedPlaceStateType =
-    useContext(PlaceContext)[1];
+  const {
+    placeState,
+    reverseGeocodedPlaceState,
+  }: {
+    placeState: placeStateType;
+    reverseGeocodedPlaceState: reverseGeocodedPlaceStateType;
+  } = useContext(PlaceContext);
+  const [place, setPlace] = placeState;
+  const [reverseGeocodedPlace, setReverseGeocodedPlace] =
+    reverseGeocodedPlaceState;
 
   // const [place, setPlace] = useState<LatLng | null>();
-  const placeState: placeStateType = useContext(PlaceContext);
+  // const placeState: placeStateType = useContext(PlaceContext);
   // hahah recursion
   // useEffect(() => {
   //   setReverseGeocodedPlace(fetchedFormattedAddress(place));
@@ -30,21 +38,15 @@ const BottomDrawerBody = () => {
       longitude: details?.geometry.location.lng || 0,
     };
     fetchedFormattedAddress(position);
-    placeState.setPlace(position);
+    setPlace(position);
     moveTo(position);
   };
   const onPrimaryButtonPress = async () => {
-    fetchedFormattedAddress(placeState.place);
-    reverseGeocodedPlaceState.setReverseGeocodedPlace(
-      await fetchedFormattedAddress(placeState.place)
-    );
+    fetchedFormattedAddress(place);
+    setReverseGeocodedPlace(await fetchedFormattedAddress(place));
     console.log(
-      `🌎 Адрес текстом: "${
-        reverseGeocodedPlaceState.reverseGeocodedPlace
-      }" + 📍 Координаты: "${
-        placeState.place
-          ? JSON.stringify(placeState.place)
-          : JSON.stringify(placeState.place)
+      `🌎 Адрес текстом: "${reverseGeocodedPlace}" + 📍 Координаты: "${
+        place ? JSON.stringify(place) : JSON.stringify(place)
       }" `
     );
     // console.log(
@@ -57,9 +59,7 @@ const BottomDrawerBody = () => {
     <View style={styles.bottomDrawerWrapper}>
       <View style={styles.linkAddress}>
         <MarkerIcon width={36} fill="#87A3DD" style={{ flex: 1 }} />
-        <Text style={styles.baseText}>
-          {reverseGeocodedPlaceState.reverseGeocodedPlace}
-        </Text>
+        <Text style={styles.baseText}>{reverseGeocodedPlace}</Text>
       </View>
       {
         // TODO: There 👇 I should put a label tag for the semantic purposes. It'll need to be dealt with later on

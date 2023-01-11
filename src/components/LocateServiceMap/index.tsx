@@ -30,31 +30,38 @@ export const LocateServiceMap = () => {
   // ! helpers moveTo
   // ! constants constants
   // const [place, setPlace] = useState<LatLng>(INITIAL_LAT_LNG);
-  const placeState: placeStateType = useContext(PlaceContext)[0];
-  const reverseGeocodedPlaceState: reverseGeocodedPlaceStateType =
-    useContext(PlaceContext)[1];
-  useEffect(() => {
-    // moveTo(placeState.place);
-    // reverseGeocodedPlaceState.setReverseGeocodedPlace(
-    //   fetchedFormattedAddress(placeState.place)
-    // );
-    return () => {};
-  }, [placeState.place]);
+  const {
+    placeState,
+    reverseGeocodedPlaceState,
+  }: {
+    placeState: placeStateType;
+    reverseGeocodedPlaceState: reverseGeocodedPlaceStateType;
+  } = useContext(PlaceContext);
+  const [place, setPlace] = placeState;
+  const [reverseGeocodedPlace, setReverseGeocodedPlace] =
+    reverseGeocodedPlaceState;
+  // useEffect(() => {
+  //   // moveTo(placeState.place);
+  //   // reverseGeocodedPlaceState.setReverseGeocodedPlace(
+  //   //   fetchedFormattedAddress(placeState.place)
+  //   // );
+  //   return () => {};
+  // }, [placeState.place]);
   const onMapViewPress = (e: MapPressEvent) => {
-    placeState.setPlace(e.nativeEvent.coordinate);
+    setPlace(e.nativeEvent.coordinate);
     // reverseGeocodedPlaceState.setReverseGeocodedPlace(
     //   fetchedFormattedAddress(placeState.place)
     // );
-    moveTo(placeState.place);
-    console.log("🌎 onMapViewPress ", placeState.place);
+    moveTo(place);
+    console.log("🌎 onMapViewPress ", place);
   };
   const onLocationMarkerDragEndHandler = (e: MarkerDragStartEndEvent) => {
-    placeState.setPlace(e.nativeEvent.coordinate);
+    setPlace(e.nativeEvent.coordinate);
     // reverseGeocodedPlaceState.setReverseGeocodedPlace(
     //   fetchedFormattedAddress(placeState.place)
     // );
-    moveTo(placeState.place);
-    console.log("📍 onLocationMarkerDragEndHandler ", placeState.place);
+    moveTo(place);
+    console.log("📍 onLocationMarkerDragEndHandler ", place);
   };
   const moveTo = async (position: LatLng) => {
     const camera = await mapRef.current?.getCamera();
@@ -79,10 +86,10 @@ export const LocateServiceMap = () => {
       }}
     >
       {/* {place || currentLocation ? ( */}
-      {placeState.place ? (
+      {place ? (
         <LocationMarker
           // coordinate={place ? place : currentLocation!}
-          coordinate={placeState.place}
+          coordinate={place}
           onDragEnd={(e: MarkerDragStartEndEvent) => {
             onLocationMarkerDragEndHandler(e);
           }}
