@@ -1,6 +1,5 @@
 import { Text } from "@rneui/themed";
 import React from "react";
-import { GOOGLE_API_KEY } from "/environments";
 import { styles } from "./index.styles";
 import {
   GooglePlaceDetail,
@@ -35,7 +34,7 @@ export const InputWithAutocomplete = React.forwardRef<
         fetchDetails
         onPress={pressHandler}
         query={{
-          key: GOOGLE_API_KEY,
+          key: process.env.GOOGLE_API_KEY,
           language: "en",
         }}
         listEmptyComponent={() => (

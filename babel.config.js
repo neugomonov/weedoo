@@ -13,7 +13,6 @@ module.exports = function (api) {
             '/assets': './src/assets',
             '/helpers': './src/helpers',
             '/constants': './src/constants',
-            '/environments': './src/environments'
           }
         }
       ],

@@ -77,6 +77,7 @@ export const LocateServiceMap = React.forwardRef<
       initialRegion={INITIAL_POSITION}
       showsUserLocation={true}
       followsUserLocation={true}
+      showsMyLocationButton={false}
       onPress={(e: MapPressEvent) => {
         onMapViewPress(e);
       }}
