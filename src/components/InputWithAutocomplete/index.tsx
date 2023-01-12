@@ -1,3 +1,6 @@
+import { Text } from "@rneui/themed";
+import React from "react";
+import { styles } from "./index.styles";
 import {
   GooglePlaceDetail,
   MapsAutocomplete,
@@ -5,10 +8,6 @@ import {
   MapsAutocompleteRef,
 } from "/components/MapsAutocomplete";
 import SuggestionRow from "/components/SuggestionRow";
-import { Text } from "@rneui/themed";
-import React, { useEffect, useRef } from "react";
-import { GOOGLE_API_KEY } from "../../environments";
-import { styles } from "./index.styles";
 
 export type InputWithAutocompleteProps = {
   textValue: string;
@@ -22,7 +21,7 @@ export const InputWithAutocomplete = React.forwardRef<
 >((props, ref) => {
   const { textValue, onPlaceSelected, setClearIcon } = props;
   const pressHandler: MapsAutocompleteProps["onPress"] = (
-    _,
+    _: any,
     details = null
   ) => {
     onPlaceSelected(details);
@@ -35,7 +34,7 @@ export const InputWithAutocomplete = React.forwardRef<
         fetchDetails
         onPress={pressHandler}
         query={{
-          key: GOOGLE_API_KEY,
+          key: process.env.GOOGLE_API_KEY,
           language: "en",
         }}
         listEmptyComponent={() => (

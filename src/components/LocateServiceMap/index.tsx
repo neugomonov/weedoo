@@ -1,68 +1,35 @@
-import { LocationMarker } from "/components/LocationMarker";
-import React, { useContext } from "react";
-import { FC, useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from "react";
 import { Dimensions } from "react-native";
+import Constants from "expo-constants";
 import MapView, {
   LatLng,
   MapPressEvent,
   MarkerDragStartEndEvent,
   PROVIDER_GOOGLE,
 } from "react-native-maps";
-import { INITIAL_POSITION, INITIAL_LAT_LNG } from "/constants";
-// ? import { fetchedFormattedAddress } from "helpers/fetchedFormattedAddress"; - this is the autocompleted variant. It works with tsconfig, but babel doesn't understand. 🤔
-import { fetchedFormattedAddress } from "/helpers/fetchedFormattedAddress";
 import {
   PlaceContext,
   placeStateType,
   reverseGeocodedPlaceStateType,
 } from "/components/Context";
+import { LocationMarker } from "/components/LocationMarker";
+import { INITIAL_POSITION } from "/constants";
+import { fetchedFormattedAddress } from "/helpers/fetchedFormattedAddress";
+import { MapViewNativeComponentType } from "react-native-maps/lib/MapViewNativeComponent";
 
-export type LocateServiceMapProps = {
-  textValue: string;
-};
+export type LocateServiceMapProps = {};
 
-export type LocateServiceMap = {
-  onPlaceSelected: LocateServiceMapProps["onPlaceSelected"];
-};
-
-export const LocateServiceMap = () => {
+export const LocateServiceMap = React.forwardRef<
+  React.RefObject<MapViewNativeComponentType>,
+  LocateServiceMapProps
+>((props, ref) => {
+  const {} = props;
   const mapRef = useRef<MapView>(null);
-  // ! helpers moveTo
-  // ! constants constants
-  // const [place, setPlace] = useState<LatLng>(INITIAL_LAT_LNG);
-  const {
-    placeState,
-    reverseGeocodedPlaceState,
-  }: {
-    placeState: placeStateType;
-    reverseGeocodedPlaceState: reverseGeocodedPlaceStateType;
-  } = useContext(PlaceContext);
-  const [place, setPlace] = placeState;
-  const [reverseGeocodedPlace, setReverseGeocodedPlace] =
-    reverseGeocodedPlaceState;
-  // useEffect(() => {
-  //   // moveTo(placeState.place);
-  //   // reverseGeocodedPlaceState.setReverseGeocodedPlace(
-  //   //   fetchedFormattedAddress(placeState.place)
-  //   // );
-  //   return () => {};
-  // }, [placeState.place]);
-  const onMapViewPress = (e: MapPressEvent) => {
-    setPlace(e.nativeEvent.coordinate);
-    // reverseGeocodedPlaceState.setReverseGeocodedPlace(
-    //   fetchedFormattedAddress(placeState.place)
-    // );
-    moveTo(place);
-    console.log("🌎 onMapViewPress ", place);
-  };
-  const onLocationMarkerDragEndHandler = (e: MarkerDragStartEndEvent) => {
-    setPlace(e.nativeEvent.coordinate);
-    // reverseGeocodedPlaceState.setReverseGeocodedPlace(
-    //   fetchedFormattedAddress(placeState.place)
-    // );
-    moveTo(place);
-    console.log("📍 onLocationMarkerDragEndHandler ", place);
-  };
   const moveTo = async (position: LatLng) => {
     const camera = await mapRef.current?.getCamera();
     if (camera) {
@@ -70,26 +37,54 @@ export const LocateServiceMap = () => {
       mapRef.current?.animateCamera(camera, { duration: 1000 });
     }
   };
+
+  // @ts-expect-error - Object is of type 'unknown'.ts(2571)
+  const placeState: placeStateType = useContext(PlaceContext)[0];
+  const reverseGeocodedPlaceState: reverseGeocodedPlaceStateType =
+    // @ts-expect-error - Object is of type 'unknown'.ts(2571)
+    useContext(PlaceContext)[1];
+  useEffect(() => {
+    moveTo(placeState.place);
+    return () => {};
+  }, [placeState.place]);
+  const onMapViewPress = async (e: MapPressEvent) => {
+    placeState.setPlace(e.nativeEvent.coordinate);
+    const fetchedFormattedAddressRes = await fetchedFormattedAddress(
+      e.nativeEvent.coordinate
+    );
+    reverseGeocodedPlaceState.setReverseGeocodedPlace(
+      fetchedFormattedAddressRes
+    );
+  };
+  const onLocationMarkerDragEndHandler = async (e: MarkerDragStartEndEvent) => {
+    placeState.setPlace(e.nativeEvent.coordinate);
+    const fetchedFormattedAddressRes = await fetchedFormattedAddress(
+      e.nativeEvent.coordinate
+    );
+    reverseGeocodedPlaceState.setReverseGeocodedPlace(
+      fetchedFormattedAddressRes
+    );
+  };
   return (
     <MapView
       ref={mapRef}
       style={{
         width: Dimensions.get("window").width,
         height: Dimensions.get("window").height,
+        marginTop: Constants.statusBarHeight + 50,
       }}
       provider={PROVIDER_GOOGLE}
       initialRegion={INITIAL_POSITION}
       showsUserLocation={true}
       followsUserLocation={true}
+      showsMyLocationButton={false}
       onPress={(e: MapPressEvent) => {
         onMapViewPress(e);
       }}
     >
-      {/* {place || currentLocation ? ( */}
-      {place ? (
+      {placeState.place ? (
         <LocationMarker
-          // coordinate={place ? place : currentLocation!}
-          coordinate={place}
+          coordinate={placeState.place}
           onDragEnd={(e: MarkerDragStartEndEvent) => {
             onLocationMarkerDragEndHandler(e);
           }}
@@ -97,6 +92,6 @@ export const LocateServiceMap = () => {
       ) : null}
     </MapView>
   );
-};
+});
 
 export default LocateServiceMap;

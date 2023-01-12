@@ -1,9 +1,9 @@
+import React, { FC, useRef, useState } from "react";
 import { InputLiner } from "/components/InputLiner";
 import {
   InputWithAutocomplete,
   InputWithAutocompleteProps,
 } from "/components/InputWithAutocomplete";
-import React, { FC, useRef, useState } from "react";
 
 export type InputWithAutocompleteAndLinerProps = {
   onPlaceSelected: InputWithAutocompleteProps["onPlaceSelected"];

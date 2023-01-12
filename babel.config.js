@@ -10,13 +10,20 @@ module.exports = function (api) {
           alias: {
             // This needs to be mirrored in tsconfig.json
             '/components': './src/components',
-            '/redux': './src/redux',
             '/assets': './src/assets',
             '/helpers': './src/helpers',
-            '/constants': './src/constants'
+            '/constants': './src/constants',
           }
         }
-      ]
+      ],
+      ['module:react-native-dotenv', {
+        'moduleName': '',
+        'path': './src/environments',
+        'blacklist': null,
+        'whitelist': null,
+        'safe': false,
+        'allowUndefined': true
+    }]
     ]
   }
 }

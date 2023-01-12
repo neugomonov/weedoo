@@ -20,7 +20,6 @@
   ],
   "paths": {
     "/components/*": ["./src/components"],
-    "/redux/*": ["./src/redux"],
     "/assets/*": ["./src/assets"],
     "/helpers/*": ["./src/helpers"],
     "/constants/*": ["./src/constants"]
