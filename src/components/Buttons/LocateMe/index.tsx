@@ -25,9 +25,6 @@ export const LocateMe: FC = () => {
       fetchedFormattedAddressRes
     );
   };
-  useEffect(() => {
-    fetchedFormattedAddress(placeState.place);
-  }, [placeState.place]);
   return (
     <View
       style={{

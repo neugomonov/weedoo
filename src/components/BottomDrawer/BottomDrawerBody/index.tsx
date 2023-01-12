@@ -23,7 +23,6 @@ const BottomDrawerBody = React.memo(() => {
       latitude: details?.geometry.location.lat || 0,
       longitude: details?.geometry.location.lng || 0,
     };
-    fetchedFormattedAddress(position);
     placeState.setPlace(position);
     const fetchedFormattedAddressRes = await fetchedFormattedAddress(position);
     reverseGeocodedPlaceState.setReverseGeocodedPlace(
@@ -31,7 +30,6 @@ const BottomDrawerBody = React.memo(() => {
     );
   };
   const onPrimaryButtonPress: () => Promise<void> = async () => {
-    fetchedFormattedAddress(placeState.place);
     reverseGeocodedPlaceState.setReverseGeocodedPlace(
       await fetchedFormattedAddress(placeState.place)
     );
