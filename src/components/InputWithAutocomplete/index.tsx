@@ -8,7 +8,7 @@ import {
   MapsAutocompleteRef,
 } from "/components/MapsAutocomplete";
 import SuggestionRow from "/components/SuggestionRow";
-import { GOOGLE_API_KEY } from "../../environments";
+import Constants from "expo-constants";
 
 export type InputWithAutocompleteProps = {
   textValue: string;
@@ -35,7 +35,7 @@ export const InputWithAutocomplete = React.forwardRef<
         fetchDetails
         onPress={pressHandler}
         query={{
-          key: GOOGLE_API_KEY,
+          key: Constants!.expoConfig!.extra!.GOOGLE_API_KEY,
           language: "en",
         }}
         listEmptyComponent={() => (
