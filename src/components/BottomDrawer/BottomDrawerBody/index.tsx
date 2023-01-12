@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Text, View } from "react-native";
 import { styles } from "./index.styles";
 import MarkerIcon from "/assets/icons/marker.svg";
@@ -63,5 +63,7 @@ const BottomDrawerBody = React.memo(() => {
     </View>
   );
 });
+
+BottomDrawerBody.displayName = "BottomDrawerBody";
 
 export default BottomDrawerBody;

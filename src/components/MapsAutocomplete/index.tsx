@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import debounce from "lodash.debounce";
 import PropTypes from "prop-types";
 import Qs from "qs";
@@ -201,9 +200,9 @@ interface Term {
 
 interface StructuredFormatting {
   main_text: string;
-  main_text_matched_substrings: Object[][];
+  main_text_matched_substrings: object[][];
   secondary_text: string;
-  secondary_text_matched_substrings: Object[][];
+  secondary_text_matched_substrings: object[][];
   terms: Term[];
   types: PlaceType[];
 }
@@ -315,7 +314,7 @@ interface MapsAutocompleteProps {
   inbetweenCompo?: React.ReactNode;
   isRowScrollable?: boolean;
   keyboardShouldPersistTaps?: "never" | "always" | "handled";
-  listEmptyComponent?: JSX.Element | React.ComponentType<{}>;
+  listEmptyComponent?: JSX.Element | React.ComponentType<undefined>;
   listUnderlayColor?: string;
   listViewDisplayed?: "auto" | boolean;
   minLength?: number;
@@ -330,20 +329,20 @@ interface MapsAutocompleteProps {
   predefinedPlaces?: Place[];
   predefinedPlacesAlwaysVisible?: boolean;
   preProcess?: (text: string) => string;
-  query: Query | Object;
+  query: Query | object;
   renderDescription?: (description: DescriptionRow) => string;
-  renderHeaderComponent?: () => JSX.Element | React.ComponentType<{}>;
-  renderLeftButton?: () => JSX.Element | React.ComponentType<{}>;
-  renderRightButton?: () => JSX.Element | React.ComponentType<{}>;
+  renderHeaderComponent?: () => JSX.Element | React.ComponentType<undefined>;
+  renderLeftButton?: () => JSX.Element | React.ComponentType<undefined>;
+  renderRightButton?: () => JSX.Element | React.ComponentType<undefined>;
   renderRow?: (
     data: GooglePlaceData,
     index: number
-  ) => JSX.Element | React.ComponentType<{}>;
+  ) => JSX.Element | React.ComponentType<undefined>;
   requestUrl?: RequestUrl;
-  styles?: Partial<Styles> | Object;
+  styles?: Partial<Styles> | object;
   suppressDefaultStyles?: boolean;
   textInputHide?: boolean;
-  textInputProps?: TextInputProps | Object;
+  textInputProps?: TextInputProps | object;
   timeout?: number;
 }
 
@@ -500,12 +499,12 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
         setStateText(_renderDescription(rowData));
         _onBlur(null);
         delete rowData.isLoading;
-        let predefinedPlace = _getPredefinedPlace(rowData);
+        const predefinedPlace = _getPredefinedPlace(rowData);
         props.onPress(predefinedPlace, predefinedPlace);
       }
     };
     const _enableRowLoader = (rowData: any) => {
-      let rows = buildRowsFromResults(_results);
+      const rows = buildRowsFromResults(_results);
       for (let i = 0; i < rows.length; i++) {
         if (
           rows[i].place_id === rowData.place_id ||
@@ -710,7 +709,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
       currentTarget: any;
     }) => {
       if (!relatedTarget) return false;
-      var node = relatedTarget.parentNode;
+      let node = relatedTarget.parentNode;
       while (node) {
         if (node.id === "result-list-id") return true;
         node = node.parentNode;
@@ -765,7 +764,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
       }
       return null;
     };
-    let {
+    const {
       onFocus,
       onBlur,
       onChangeText,
@@ -816,7 +815,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
 );
 
 MapsAutocomplete.defaultProps = {
-  // @ts-expect-error
+  // @ts-expect-error - Type '{ debounce: number; enableHighAccuracyLocation: boolean; fetchDetails: boolean; filterReverseGeocodingByTypes: never[]; GooglePlacesDetailsQuery: {}; GooglePlacesSearchQuery: { rankby: string; type: string; }; ... 19 more ...; timeout: number; }' is not assignable to type 'Partial<RefAttributes<MapsAutocompleteProps>>'.   Object literal may only specify known properties, and 'debounce' does not exist in type 'Partial<RefAttributes<MapsAutocompleteProps>>'.ts(2322)
   debounce: 0,
   enableHighAccuracyLocation: true,
   fetchDetails: false,
@@ -835,9 +834,9 @@ MapsAutocomplete.defaultProps = {
   minLength: 0,
   nearbyPlacesAPI: "GooglePlacesSearch",
   numberOfLines: 1,
-  onFail: () => {},
-  onNotFound: () => {},
-  onPress: () => {},
+  onFail: () => undefined,
+  onNotFound: () => undefined,
+  onPress: () => undefined,
   onTimeout: () => console.warn("maps autocomplete: request timeout"),
   placeholder: "",
   predefinedPlaces: [],
@@ -853,8 +852,9 @@ MapsAutocomplete.defaultProps = {
 };
 
 MapsAutocomplete.propTypes = {
-  // @ts-expect-error
+  // @ts-expect-error - Type '{ debounce: PropTypes.Requireable<number>; enableHighAccuracyLocation: PropTypes.Requireable<boolean>; fetchDetails: PropTypes.Requireable<boolean>; ... 31 more ...; timeout: PropTypes.Requireable<...>; }' is not assignable to type 'WeakValidationMap<RefAttributes<MapsAutocompleteProps>>'.   Object literal may only specify known properties, and 'debounce' does not exist in type 'WeakValidationMap<RefAttributes<MapsAutocompleteProps>>'.ts(2322)   No quick fixes available
   debounce: PropTypes.number,
+  children: PropTypes.node.isRequired,
   enableHighAccuracyLocation: PropTypes.bool,
   fetchDetails: PropTypes.bool,
   filterReverseGeocodingByTypes: PropTypes.array,
@@ -897,5 +897,7 @@ MapsAutocomplete.propTypes = {
   textInputProps: PropTypes.object,
   timeout: PropTypes.number,
 };
+
+MapsAutocomplete.displayName = "MapsAutocomplete";
 
 export default { MapsAutocomplete };
