@@ -826,7 +826,7 @@ MapsAutocomplete.defaultProps = {
   GooglePlacesDetailsQuery: {},
   GooglePlacesSearchQuery: {
     rankby: "distance",
-    export type: "restaurant",
+    type: "restaurant",
   },
   GoogleReverseGeocodingQuery: {},
   isRowScrollable: true,
