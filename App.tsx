@@ -18,8 +18,9 @@ import { LocateServiceMap } from "/components/LocateServiceMap";
 import { fetchedFormattedAddress } from "/helpers/fetchedFormattedAddress";
 import { checkPermission } from "/helpers/locationPermission";
 import { onDrawerStateChange } from "/helpers/onDrawerStateChange";
+import { GOOGLE_API_KEY } from "./src/environments";
 
-Geocoder.init(process.env.GOOGLE_API_KEY);
+Geocoder.init(GOOGLE_API_KEY);
 
 function App() {
   const placeState: placeStateType = useContext(PlaceContext);

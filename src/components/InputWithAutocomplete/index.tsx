@@ -8,6 +8,7 @@ import {
   MapsAutocompleteRef,
 } from "/components/MapsAutocomplete";
 import SuggestionRow from "/components/SuggestionRow";
+import { GOOGLE_API_KEY } from "../../environments";
 
 export type InputWithAutocompleteProps = {
   textValue: string;
@@ -34,7 +35,7 @@ export const InputWithAutocomplete = React.forwardRef<
         fetchDetails
         onPress={pressHandler}
         query={{
-          key: process.env.GOOGLE_API_KEY,
+          key: GOOGLE_API_KEY,
           language: "en",
         }}
         listEmptyComponent={() => (

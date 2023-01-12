@@ -1,4 +1,5 @@
 import { LatLng } from "react-native-maps";
+import { GOOGLE_API_KEY } from "../environments";
 
 export const fetchedFormattedAddress = async (place: LatLng) => {
   if (place) {
@@ -9,7 +10,7 @@ export const fetchedFormattedAddress = async (place: LatLng) => {
           "," +
           place.longitude +
           "&key=" +
-          process.env.GOOGLE_API_KEY
+          GOOGLE_API_KEY
       );
       const res = (await reverseGeocodedPlace.json()).results[0]
         .formatted_address;
