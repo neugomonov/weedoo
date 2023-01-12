@@ -30,7 +30,7 @@ const BottomDrawerBody = React.memo(() => {
       fetchedFormattedAddressRes
     );
   };
-  const onPrimaryButtonPress = async () => {
+  const onPrimaryButtonPress: () => Promise<void> = async () => {
     fetchedFormattedAddress(placeState.place);
     reverseGeocodedPlaceState.setReverseGeocodedPlace(
       await fetchedFormattedAddress(placeState.place)

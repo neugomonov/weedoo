@@ -4,7 +4,7 @@ import { DrawerState } from "/constants";
 export const animateMove = (
   y: Animated.Value,
   toValue: number | Animated.Value,
-  callback?: any
+  callback?: $TSFixMe
 ) => {
   Animated.spring(y, {
     toValue: -toValue,

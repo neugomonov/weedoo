@@ -22,7 +22,7 @@ export const InputWithAutocomplete = React.forwardRef<
 >((props, ref) => {
   const { onPlaceSelected, setClearIcon } = props;
   const pressHandler: MapsAutocompleteProps["onPress"] = (
-    _: any,
+    _: $TSFixMe,
     details = null
   ) => {
     onPlaceSelected(details);
@@ -46,7 +46,7 @@ export const InputWithAutocomplete = React.forwardRef<
         )}
         suppressDefaultStyles
         debounce={200}
-        renderRow={(item: any) => <SuggestionRow item={item} />}
+        renderRow={(item: $TSFixMe) => <SuggestionRow item={item} />}
         styles={styles}
         textInputProps={{
           onFocus: () => setClearIcon(true),

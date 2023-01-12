@@ -5,7 +5,7 @@ import {
   AnimatedRegion,
   LatLng,
   MarkerAnimated,
-  MarkerDragStartEndEvent
+  MarkerDragStartEndEvent,
 } from "react-native-maps";
 
 export type LocationMarkerProps = {

@@ -25,8 +25,6 @@ import {
   ViewStyle,
 } from "react-native";
 
-type $TSFixMe = any;
-
 /** These shall be just enough 🤪 */
 type Language = "en" | "ru";
 
@@ -859,7 +857,7 @@ MapsAutocomplete.defaultProps = {
 MapsAutocomplete.propTypes = {
   // @ts-expect-error - Type '{ debounce: PropTypes.Requireable<number>; enableHighAccuracyLocation: PropTypes.Requireable<boolean>; fetchDetails: PropTypes.Requireable<boolean>; ... 31 more ...; timeout: PropTypes.Requireable<...>; }' is not assignable to type 'WeakValidationMap<RefAttributes<MapsAutocompleteProps>>'.   Object literal may only specify known properties, and 'debounce' does not exist in type 'WeakValidationMap<RefAttributes<MapsAutocompleteProps>>'.ts(2322)   No quick fixes available
   debounce: PropTypes.number,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   enableHighAccuracyLocation: PropTypes.bool,
   fetchDetails: PropTypes.bool,
   filterReverseGeocodingByTypes: PropTypes.array,

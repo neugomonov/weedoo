@@ -4,7 +4,7 @@ import { INITIAL_LAT_LNG } from "/constants";
 
 export const PlaceContext = React.createContext({
   place: INITIAL_LAT_LNG,
-  setPlace: (place: LatLng) => {},
+  setPlace: () => undefined,
 });
 
 export type placeStateType = {
@@ -17,7 +17,7 @@ export type reverseGeocodedPlaceStateType = {
   setReverseGeocodedPlace: (reverseGeocodedPlace: string) => void;
 };
 
-export const PlaceContextProvider = (props: any) => {
+export const PlaceContextProvider = (props: $TSFixMe) => {
   const setPlace = (place: LatLng) => {
     setPlaceState({ ...placeState, place: place });
   };
