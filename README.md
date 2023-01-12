@@ -13,10 +13,10 @@ WeDo is cool and good.
 <img src="screenshots/screenshot4.png" width="405"/>
 <br>
 🤖 Android:  
-<img src="src/assets/eas-update.svg"/>  
+<img src="src/assets/icons/eas-update.svg"/>  
   
 🍎 IOS:  
-<img src="src/assets/eas-update (1os).svg"/>  
+<img src="src/assets/icons/eas-update (1os).svg"/>  
 ⚒  
 There will be some assets 🖼  
 
