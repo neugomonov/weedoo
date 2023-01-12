@@ -4,9 +4,16 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "paths": {
+      "/components/*": ["components/*"],
+      "/assets/*": ["assets/*"],
+      "/helpers/*": ["helpers/*"],
+      "/constants/*": ["constants/*"],
+      "/environments/*": ["environments/*"]
+    },
+    "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
   },
-  "extends": "expo/tsconfig.base",
   "include": [
     "./App.tsx",
     "declarations.d.ts",
@@ -18,10 +25,5 @@
     "src/**/*",
     "src/**/*.*"
   ],
-  "paths": {
-    "/components/*": ["./src/components"],
-    "/assets/*": ["./src/assets"],
-    "/helpers/*": ["./src/helpers"],
-    "/constants/*": ["./src/constants"]
-  }
+  "extends": "expo/tsconfig.base"
 }
