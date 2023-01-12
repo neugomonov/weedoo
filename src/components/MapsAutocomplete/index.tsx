@@ -25,6 +25,8 @@ import {
   ViewStyle,
 } from "react-native";
 
+type $TSFixMe = any;
+
 /** These shall be just enough 🤪 */
 type Language = "en" | "ru";
 
@@ -321,7 +323,7 @@ interface MapsAutocompleteProps {
   keepResultsAfterBlur?: boolean;
   nearbyPlacesAPI?: "GoogleReverseGeocoding" | "GooglePlacesSearch";
   numberOfLines?: number;
-  onFail?: (error?: any) => void;
+  onFail?: (error?: $TSFixMe) => void;
   onNotFound?: () => void;
   onPress?: (data: GooglePlaceData, detail: GooglePlaceDetail | null) => void;
   onTimeout?: () => void;
@@ -347,25 +349,25 @@ interface MapsAutocompleteProps {
 }
 
 export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
-  (props: any, ref) => {
-    let _results: any[] = [];
-    let _requests: any[] = [];
-    const buildRowsFromResults = (results: any) => {
-      let res: any = [];
+  (props: $TSFixMe, ref) => {
+    let _results: $TSFixMe[] = [];
+    let _requests: $TSFixMe[] = [];
+    const buildRowsFromResults = (results: $TSFixMe) => {
+      let res: $TSFixMe = [];
       if (results.length === 0) {
         res = [
           ...props.predefinedPlaces.filter(
-            (place: any) => place?.description.length
+            (place: $TSFixMe) => place?.description.length
           ),
         ];
       }
-      res = res.map((place: any) => ({
+      res = res.map((place: $TSFixMe) => ({
         ...place,
         isPredefinedPlace: true,
       }));
       return [...res, ...results];
     };
-    const getRequestUrl = (requestUrl: any) => {
+    const getRequestUrl = (requestUrl: $TSFixMe) => {
       if (requestUrl) {
         if (requestUrl.useOnPlatform === "all") {
           return requestUrl.url;
@@ -380,10 +382,10 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
         return "https://maps.googleapis.com/maps/api";
       }
     };
-    const getRequestHeaders = (requestUrl: any) => {
+    const getRequestHeaders = (requestUrl: $TSFixMe) => {
       return requestUrl?.headers || {};
     };
-    const setRequestHeaders = (request: any, headers: any) => {
+    const setRequestHeaders = (request: $TSFixMe, headers: $TSFixMe) => {
       Object.keys(headers).map((headerKey) =>
         request.setRequestHeader(headerKey, headers[headerKey])
       );
@@ -394,7 +396,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
       props.listViewDisplayed === "auto" ? false : props.listViewDisplayed
     );
     const [url] = useState(getRequestUrl(props.requestUrl));
-    const inputRef = useRef<any>();
+    const inputRef = useRef<$TSFixMe>();
     useEffect(() => {
       _handleChangeText(stateText);
       return () => {
@@ -405,9 +407,9 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
     useEffect(() => {
       setDataSource(buildRowsFromResults([]));
     }, [props.predefinedPlaces]);
-    // @ts-expect-error - Type '{ setAddressText: (address: any) => void; getAddressText: () => string; blur: () => any; focus: () => any; isFocused: () => any; clear: () => any; }' is missing the following properties from type 'MapsAutocompleteProps': placeholder, queryts(2739) index.d.ts(1071, 79): The expected type comes from the return type of this signature.
+    // @ts-expect-error - Type '{ setAddressText: (address: $TSFixMe) => void; getAddressText: () => string; blur: () => $TSFixMe; focus: () => $TSFixMe; isFocused: () => $TSFixMe; clear: () => $TSFixMe; }' is missing the following properties from type 'MapsAutocompleteProps': placeholder, queryts(2739) index.d.ts(1071, 79): The expected type comes from the return type of this signature.
     useImperativeHandle(ref, () => ({
-      setAddressText: (address: any) => {
+      setAddressText: (address: $TSFixMe) => {
         setStateText(address);
         _handleChangeText(address);
         setListViewDisplayed(true);
@@ -434,7 +436,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
         return true;
       }
     };
-    const _onPress = (rowData: any) => {
+    const _onPress = (rowData: $TSFixMe) => {
       if (rowData.isPredefinedPlace !== true && props.fetchDetails === true) {
         if (rowData.isLoading === true) {
           return;
@@ -503,7 +505,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
         props.onPress(predefinedPlace, predefinedPlace);
       }
     };
-    const _enableRowLoader = (rowData: any) => {
+    const _enableRowLoader = (rowData: $TSFixMe) => {
       const rows = buildRowsFromResults(_results);
       for (let i = 0; i < rows.length; i++) {
         if (
@@ -525,7 +527,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
       }
       setDataSource(buildRowsFromResults(_results));
     };
-    const _getPredefinedPlace = (rowData: any) => {
+    const _getPredefinedPlace = (rowData: $TSFixMe) => {
       if (rowData.isPredefinedPlace !== true) {
         return rowData;
       }
@@ -536,7 +538,10 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
       }
       return rowData;
     };
-    const _filterResultsByTypes = (unfilteredResults: any, types: any) => {
+    const _filterResultsByTypes = (
+      unfilteredResults: $TSFixMe,
+      types: $TSFixMe
+    ) => {
       if (types.length === 0) return unfilteredResults;
       const results: string[] = [];
       for (let i = 0; i < unfilteredResults.length; i++) {
@@ -624,7 +629,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
     const _getRowLoader = () => {
       return <ActivityIndicator animating={true} size="small" />;
     };
-    const _renderRowData = (rowData: any, index: number) => {
+    const _renderRowData = (rowData: $TSFixMe, index: number) => {
       if (props.renderRow) {
         return props.renderRow(rowData, index);
       }
@@ -643,13 +648,13 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
         </Text>
       );
     };
-    const _renderDescription = (rowData: any) => {
+    const _renderDescription = (rowData: $TSFixMe) => {
       if (props.renderDescription) {
         return props.renderDescription(rowData);
       }
       return rowData.description || rowData.formatted_address || rowData.name;
     };
-    const _renderLoader = (rowData: any) => {
+    const _renderLoader = (rowData: $TSFixMe) => {
       if (rowData.isLoading === true) {
         return <View style={[{}, props.styles.loader]}>{_getRowLoader()}</View>;
       }
@@ -678,7 +683,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
               style={[
                 {},
                 props.styles.row,
-                (rowData as Record<string, any>).isPredefinedPlace
+                (rowData as Record<string, $TSFixMe>).isPredefinedPlace
                   ? props.styles.specialItemRow
                   : {},
               ]}
@@ -705,8 +710,8 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
       relatedTarget,
       currentTarget,
     }: {
-      relatedTarget: any;
-      currentTarget: any;
+      relatedTarget: $TSFixMe;
+      currentTarget: $TSFixMe;
     }) => {
       if (!relatedTarget) return false;
       let node = relatedTarget.parentNode;
@@ -716,7 +721,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
       }
       return false;
     };
-    const _onBlur = (e: any) => {
+    const _onBlur = (e: $TSFixMe) => {
       if (e && isNewFocusInAutocompleteResultList(e)) return;
       if (!props.keepResultsAfterBlur) {
         setListViewDisplayed(false);
@@ -785,7 +790,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
               placeholder={props.placeholder}
               onFocus={
                 onFocus
-                  ? (e: any) => {
+                  ? (e: $TSFixMe) => {
                       _onFocus();
                       onFocus(e);
                     }
@@ -793,7 +798,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
               }
               onBlur={
                 onBlur
-                  ? (e: any) => {
+                  ? (e: $TSFixMe) => {
                       _onBlur(e);
                       onBlur(e);
                     }
