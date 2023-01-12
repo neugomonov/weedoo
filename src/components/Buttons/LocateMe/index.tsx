@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect } from "react";
+import React, { FC, useContext } from "react";
 import { TouchableOpacity, View } from "react-native";
 import Navigate from "/assets/icons/navigate.svg";
 import {

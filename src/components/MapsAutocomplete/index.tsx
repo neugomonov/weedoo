@@ -25,6 +25,12 @@ import {
   ViewStyle,
 } from "react-native";
 
+export type MapsAutocompleteRef = {
+  setAddressText(address: string): void;
+  getAddressText(): string;
+  getCurrentLocation(): void;
+} & TextInput;
+
 /** These shall be just enough 🤪 */
 export type Language = "en" | "ru";
 

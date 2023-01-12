@@ -44,5 +44,11 @@ export default {
       projectId: "d0499834-fcdc-4f8f-8430-9ca9ce87a8dd",
     },
   },
-  runtimeVersion: "sdkVersion",
+  runtimeVersion: {
+    policy: "sdkVersion",
+  },
+  // * 👆 this should be:
+  // for development:   runtimeVersion: {    policy: "sdkVersion",  },
+  // for deploy:   runtimeVersion: "sdkVersion",
+  // 🥴
 };
