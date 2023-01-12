@@ -9,9 +9,9 @@
       "web"
     ],
     "orientation": "portrait",
-    "icon": "./src/assets/icon.png",
+    "icon": "./src/assets/icons/icon.png",
     "splash": {
-      "image": "./src/assets/splash.png",
+      "image": "./src/assets/icons/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -34,7 +34,7 @@
       "package": "com.antivalery.wedo"
     },
     "web": {
-      "favicon": "./src/assets/favicon.png"
+      "favicon": "./src/assets/icons/favicon.png"
     },
     "extra": {
       "eas": {
