@@ -267,7 +267,7 @@ export interface Query<T = AutocompleteRequestType> {
   language?: Language;
   components?: string;
   rankby?: string;
-  export type?: T;
+  type?: T;
   strictbounds?: boolean;
   types?: T;
 }
