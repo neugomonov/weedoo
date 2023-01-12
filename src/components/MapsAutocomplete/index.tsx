@@ -26,9 +26,9 @@ import {
 } from "react-native";
 
 /** These shall be just enough 🤪 */
-type Language = "en" | "ru";
+export type Language = "en" | "ru";
 
-type SearchType =
+export type SearchType =
   | "accounting"
   | "airport"
   | "amusement_park"
@@ -126,7 +126,7 @@ type SearchType =
   | "veterinary_care"
   | "zoo";
 
-type PlaceType =
+export type PlaceType =
   | "administrative_area_level_1"
   | "administrative_area_level_2"
   | "administrative_area_level_3"
@@ -170,14 +170,14 @@ type PlaceType =
   | "subpremise"
   | "town_square";
 
-type AutocompleteRequestType =
+export type AutocompleteRequestType =
   | "(regions)"
   | "(cities)"
   | "geocode"
   | "address"
   | "establishment";
 
-interface DescriptionRow {
+export interface DescriptionRow {
   description: string;
   id: string;
   matched_substrings: MatchedSubString[];
@@ -188,17 +188,17 @@ interface DescriptionRow {
   types: PlaceType[];
 }
 
-interface MatchedSubString {
+export interface MatchedSubString {
   length: number;
   offset: number;
 }
 
-interface Term {
+export interface Term {
   offset: number;
   value: string;
 }
 
-interface StructuredFormatting {
+export interface StructuredFormatting {
   main_text: string;
   main_text_matched_substrings: object[][];
   secondary_text: string;
@@ -207,7 +207,7 @@ interface StructuredFormatting {
   types: PlaceType[];
 }
 
-interface GooglePlaceData {
+export interface GooglePlaceData {
   description: string;
   id: string;
   matched_substrings: MatchedSubString[];
@@ -216,18 +216,18 @@ interface GooglePlaceData {
   structured_formatting: StructuredFormatting;
 }
 
-interface Point {
+export interface Point {
   lat: number;
   lng: number;
 }
 
-interface AddressComponent {
+export interface AddressComponent {
   long_name: string;
   short_name: string;
   types: PlaceType[];
 }
 
-interface Geometry {
+export interface Geometry {
   location: Point;
   viewport: {
     northeast: Point;
@@ -235,12 +235,12 @@ interface Geometry {
   };
 }
 
-interface PlusCode {
+export interface PlusCode {
   compound_code: string;
   global_code: string;
 }
 
-interface GooglePlaceDetail {
+export interface GooglePlaceDetail {
   address_components: AddressComponent[];
   adr_address: string;
   formatted_address: string;
@@ -258,7 +258,7 @@ interface GooglePlaceDetail {
   vicinity: string;
 }
 
-interface Query<T = AutocompleteRequestType> {
+export interface Query<T = AutocompleteRequestType> {
   key: string;
   sessiontoken?: string;
   offset?: number;
@@ -267,12 +267,12 @@ interface Query<T = AutocompleteRequestType> {
   language?: Language;
   components?: string;
   rankby?: string;
-  type?: T;
+  export type?: T;
   strictbounds?: boolean;
   types?: T;
 }
 
-interface Styles {
+export interface Styles {
   container: StyleProp<ViewStyle>;
   description: StyleProp<TextStyle>;
   textInputContainer: StyleProp<ViewStyle>;
@@ -286,18 +286,18 @@ interface Styles {
   row: StyleProp<ViewStyle>;
 }
 
-interface Place {
+export interface Place {
   description: string;
   geometry: { location: Point };
 }
 
-interface RequestUrl {
+export interface RequestUrl {
   url: string;
   useOnPlatform: "web" | "all";
   headers?: Record<string, string>;
 }
 
-interface MapsAutocompleteProps {
+export interface MapsAutocompleteProps {
   debounce?: number;
   enableHighAccuracyLocation?: boolean;
   enablePoweredByContainer?: boolean;
@@ -405,7 +405,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
     useEffect(() => {
       setDataSource(buildRowsFromResults([]));
     }, [props.predefinedPlaces]);
-    // @ts-expect-error - Type '{ setAddressText: (address: $TSFixMe) => void; getAddressText: () => string; blur: () => $TSFixMe; focus: () => $TSFixMe; isFocused: () => $TSFixMe; clear: () => $TSFixMe; }' is missing the following properties from type 'MapsAutocompleteProps': placeholder, queryts(2739) index.d.ts(1071, 79): The expected type comes from the return type of this signature.
+    // @ts-expect-error - Type '{ setAddressText: (address: $TSFixMe) => void; getAddressText: () => string; blur: () => $TSFixMe; focus: () => $TSFixMe; isFocused: () => $TSFixMe; clear: () => $TSFixMe; }' is missing the following properties from export type 'MapsAutocompleteProps': placeholder, queryts(2739) index.d.ts(1071, 79): The expected export type comes from the return export type of this signature.
     useImperativeHandle(ref, () => ({
       setAddressText: (address: $TSFixMe) => {
         setStateText(address);
@@ -818,7 +818,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
 );
 
 MapsAutocomplete.defaultProps = {
-  // @ts-expect-error - Type '{ debounce: number; enableHighAccuracyLocation: boolean; fetchDetails: boolean; filterReverseGeocodingByTypes: never[]; GooglePlacesDetailsQuery: {}; GooglePlacesSearchQuery: { rankby: string; type: string; }; ... 19 more ...; timeout: number; }' is not assignable to type 'Partial<RefAttributes<MapsAutocompleteProps>>'.   Object literal may only specify known properties, and 'debounce' does not exist in type 'Partial<RefAttributes<MapsAutocompleteProps>>'.ts(2322)
+  // @ts-expect-error - Type '{ debounce: number; enableHighAccuracyLocation: boolean; fetchDetails: boolean; filterReverseGeocodingByTypes: never[]; GooglePlacesDetailsQuery: {}; GooglePlacesSearchQuery: { rankby: string; export type: string; }; ... 19 more ...; timeout: number; }' is not assignable to export type 'Partial<RefAttributes<MapsAutocompleteProps>>'.   Object literal may only specify known properties, and 'debounce' does not exist in export type 'Partial<RefAttributes<MapsAutocompleteProps>>'.ts(2322)
   debounce: 0,
   enableHighAccuracyLocation: true,
   fetchDetails: false,
@@ -826,7 +826,7 @@ MapsAutocomplete.defaultProps = {
   GooglePlacesDetailsQuery: {},
   GooglePlacesSearchQuery: {
     rankby: "distance",
-    type: "restaurant",
+    export type: "restaurant",
   },
   GoogleReverseGeocodingQuery: {},
   isRowScrollable: true,
@@ -855,7 +855,7 @@ MapsAutocomplete.defaultProps = {
 };
 
 MapsAutocomplete.propTypes = {
-  // @ts-expect-error - Type '{ debounce: PropTypes.Requireable<number>; enableHighAccuracyLocation: PropTypes.Requireable<boolean>; fetchDetails: PropTypes.Requireable<boolean>; ... 31 more ...; timeout: PropTypes.Requireable<...>; }' is not assignable to type 'WeakValidationMap<RefAttributes<MapsAutocompleteProps>>'.   Object literal may only specify known properties, and 'debounce' does not exist in type 'WeakValidationMap<RefAttributes<MapsAutocompleteProps>>'.ts(2322)   No quick fixes available
+  // @ts-expect-error - Type '{ debounce: PropTypes.Requireable<number>; enableHighAccuracyLocation: PropTypes.Requireable<boolean>; fetchDetails: PropTypes.Requireable<boolean>; ... 31 more ...; timeout: PropTypes.Requireable<...>; }' is not assignable to export type 'WeakValidationMap<RefAttributes<MapsAutocompleteProps>>'.   Object literal may only specify known properties, and 'debounce' does not exist in export type 'WeakValidationMap<RefAttributes<MapsAutocompleteProps>>'.ts(2322)   No quick fixes available
   debounce: PropTypes.number,
   children: PropTypes.node,
   enableHighAccuracyLocation: PropTypes.bool,
