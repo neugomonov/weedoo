@@ -10,14 +10,15 @@
       "web"
     ],
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/d0499834-fcdc-4f8f-8430-9ca9ce87a8dd"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -28,18 +29,19 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF",
-        "package": "com.antivalery.wedo"
-      }
+        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.antivalery.wedo"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./src/assets/favicon.png"
     },
     "extra": {
       "eas": {
         "projectId": "d0499834-fcdc-4f8f-8430-9ca9ce87a8dd"
       }
-    }
+    },
+    "runtimeVersion": "1.0.0"
   }
 }
