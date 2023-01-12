@@ -1,18 +1,12 @@
-import React, { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import Search from "/assets/icons/search.svg";
+import React from "react";
+import { Text, View } from "react-native";
 import { styles } from "./index.styles";
+import Search from "/assets/icons/search.svg";
 
 const SuggestionRow = ({ item }) => {
-  useEffect(() => {
-    // console.log(item);
-    return () => {};
-  });
   const title = item.structured_formatting.main_text;
   const address = item.structured_formatting.secondary_text;
   const type = item.types[0];
-  // console.log(item.structured_formatting);
-  // console.log(item);
   return (
     <View style={styles.row}>
       <View style={styles.iconContainer}>

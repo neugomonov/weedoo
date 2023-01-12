@@ -26,7 +26,7 @@ export const PrimaryButton: FC<PrimaryButtonProps> = (props) => {
         fontFamily: "Montserrat-ExtraBold",
         fontSize: 16,
       }}
-      ViewComponent={LinearGradient} // Don't forget this!
+      ViewComponent={LinearGradient}
       linearGradientProps={{
         colors: ["#FF9800", "#FE873E"],
         start: { x: 0.5, y: 0 },

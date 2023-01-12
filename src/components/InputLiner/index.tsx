@@ -1,11 +1,11 @@
-import { MapsAutocompleteRef } from "/components/MapsAutocomplete";
 import { Input } from "@rneui/themed";
-import Close from "/assets/icons/close.svg";
-import Search from "/assets/icons/search.svg";
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import InsetShadow from "react-native-inset-shadow";
 import { styles } from "./index.styles";
+import Close from "/assets/icons/close.svg";
+import Search from "/assets/icons/search.svg";
+import { MapsAutocompleteRef } from "/components/MapsAutocomplete";
 
 export type InputLinerProps = {
   value?: string;
@@ -19,6 +19,7 @@ export const InputLiner = React.forwardRef<
 >((props, ref) => {
   const { clearIcon, value, onChange } = props;
   const clearHandler = () => {
+    // @ts-expect-error - Property 'current' does not exist on type '((instance: any) => void) | MutableRefObject<any>'. Property 'current' does not exist on type '(instance: any) => void'.ts(2339)
     ref?.current?.setAddressText("");
   };
   return (

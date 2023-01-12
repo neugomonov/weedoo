@@ -29,7 +29,6 @@ import {
 /** These shall be just enough 🤪 */
 type Language = "en" | "ru";
 
-/** @see https://developers.google.com/places/web-service/supported_types#table1 */
 type SearchType =
   | "accounting"
   | "airport"
@@ -128,7 +127,6 @@ type SearchType =
   | "veterinary_care"
   | "zoo";
 
-/** @see https://developers.google.com/places/web-service/supported_types#table2 */
 type PlaceType =
   | "administrative_area_level_1"
   | "administrative_area_level_2"
@@ -173,7 +171,6 @@ type PlaceType =
   | "subpremise"
   | "town_square";
 
-/** @see https://developers.google.com/places/web-service/supported_types#table3 */
 type AutocompleteRequestType =
   | "(regions)"
   | "(cities)"
@@ -262,7 +259,6 @@ interface GooglePlaceDetail {
   vicinity: string;
 }
 
-/** @see https://developers.google.com/places/web-service/autocomplete */
 interface Query<T = AutocompleteRequestType> {
   key: string;
   sessiontoken?: string;
@@ -274,7 +270,6 @@ interface Query<T = AutocompleteRequestType> {
   rankby?: string;
   type?: T;
   strictbounds?: boolean;
-  /** @deprecated @see https://github.com/FaridSafi/react-native-google-places-autocomplete/pull/384 */
   types?: T;
 }
 
@@ -320,14 +315,11 @@ interface MapsAutocompleteProps {
   inbetweenCompo?: React.ReactNode;
   isRowScrollable?: boolean;
   keyboardShouldPersistTaps?: "never" | "always" | "handled";
-  /** use the ListEmptyComponent prop when no autocomplete results are found. */
   listEmptyComponent?: JSX.Element | React.ComponentType<{}>;
   listUnderlayColor?: string;
   listViewDisplayed?: "auto" | boolean;
-  /** minimum length of text to search */
   minLength?: number;
   keepResultsAfterBlur?: boolean;
-  /** Which API to use: GoogleReverseGeocoding or GooglePlacesSearch */
   nearbyPlacesAPI?: "GoogleReverseGeocoding" | "GooglePlacesSearch";
   numberOfLines?: number;
   onFail?: (error?: any) => void;
@@ -347,12 +339,10 @@ interface MapsAutocompleteProps {
     data: GooglePlaceData,
     index: number
   ) => JSX.Element | React.ComponentType<{}>;
-  /** sets the request URL to something other than the google api.  Helpful if you want web support or to use your own api. */
   requestUrl?: RequestUrl;
   styles?: Partial<Styles> | Object;
   suppressDefaultStyles?: boolean;
   textInputHide?: boolean;
-  /** text input props */
   textInputProps?: TextInputProps | Object;
   timeout?: number;
 }
