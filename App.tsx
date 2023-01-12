@@ -14,6 +14,8 @@ import { Header } from "/components/Header";
 import { LocateServiceMap } from "/components/LocateServiceMap";
 import { checkPermission } from "/helpers/locationPermission";
 import { onDrawerStateChange } from "/helpers/onDrawerStateChange";
+// * To deploy - Constants!.expoConfig!.extra!.GOOGLE_API_KEY
+// * To continue working - GOOGLE_API_KEY
 
 Geocoder.init(Constants!.expoConfig!.extra!.GOOGLE_API_KEY);
 
