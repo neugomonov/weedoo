@@ -9,8 +9,8 @@
       "/components/*": ["components/*"],
       "/assets/*": ["assets/*"],
       "/helpers/*": ["helpers/*"],
-      "/constants/*": ["constants/*"],
-      "/environments/*": ["environments/*"]
+      "/constants": ["constants/index"],
+      "/environments": ["environments/index"]
     },
     "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
   },
