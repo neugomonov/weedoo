@@ -33,10 +33,11 @@ const BottomDrawerBody = React.memo(() => {
     reverseGeocodedPlaceState.setReverseGeocodedPlace(
       await fetchedFormattedAddress(placeState.place)
     );
+    const { latitude, longitude } = placeState.place;
     console.info(
       `🌎 Адрес текстом: "${await fetchedFormattedAddress(
         placeState.place
-      )}" + 📍 Координаты: "${JSON.stringify(placeState.place)}" `
+      )}" + 📍 Координаты: "${latitude}, ${longitude}" `
     );
   };
   return (
