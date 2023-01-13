@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import debounce from "lodash.debounce";
 import PropTypes from "prop-types";
 import Qs from "qs";
@@ -26,10 +25,16 @@ import {
   ViewStyle,
 } from "react-native";
 
-/** These shall be just enough 🤪 */
-type Language = "en" | "ru";
+export type MapsAutocompleteRef = {
+  setAddressText(address: string): void;
+  getAddressText(): string;
+  getCurrentLocation(): void;
+} & TextInput;
 
-type SearchType =
+/** These shall be just enough 🤪 */
+export type Language = "en" | "ru";
+
+export type SearchType =
   | "accounting"
   | "airport"
   | "amusement_park"
@@ -127,7 +132,7 @@ type SearchType =
   | "veterinary_care"
   | "zoo";
 
-type PlaceType =
+export type PlaceType =
   | "administrative_area_level_1"
   | "administrative_area_level_2"
   | "administrative_area_level_3"
@@ -171,14 +176,14 @@ type PlaceType =
   | "subpremise"
   | "town_square";
 
-type AutocompleteRequestType =
+export type AutocompleteRequestType =
   | "(regions)"
   | "(cities)"
   | "geocode"
   | "address"
   | "establishment";
 
-interface DescriptionRow {
+export interface DescriptionRow {
   description: string;
   id: string;
   matched_substrings: MatchedSubString[];
@@ -189,26 +194,26 @@ interface DescriptionRow {
   types: PlaceType[];
 }
 
-interface MatchedSubString {
+export interface MatchedSubString {
   length: number;
   offset: number;
 }
 
-interface Term {
+export interface Term {
   offset: number;
   value: string;
 }
 
-interface StructuredFormatting {
+export interface StructuredFormatting {
   main_text: string;
-  main_text_matched_substrings: Object[][];
+  main_text_matched_substrings: object[][];
   secondary_text: string;
-  secondary_text_matched_substrings: Object[][];
+  secondary_text_matched_substrings: object[][];
   terms: Term[];
   types: PlaceType[];
 }
 
-interface GooglePlaceData {
+export interface GooglePlaceData {
   description: string;
   id: string;
   matched_substrings: MatchedSubString[];
@@ -217,18 +222,18 @@ interface GooglePlaceData {
   structured_formatting: StructuredFormatting;
 }
 
-interface Point {
+export interface Point {
   lat: number;
   lng: number;
 }
 
-interface AddressComponent {
+export interface AddressComponent {
   long_name: string;
   short_name: string;
   types: PlaceType[];
 }
 
-interface Geometry {
+export interface Geometry {
   location: Point;
   viewport: {
     northeast: Point;
@@ -236,12 +241,12 @@ interface Geometry {
   };
 }
 
-interface PlusCode {
+export interface PlusCode {
   compound_code: string;
   global_code: string;
 }
 
-interface GooglePlaceDetail {
+export interface GooglePlaceDetail {
   address_components: AddressComponent[];
   adr_address: string;
   formatted_address: string;
@@ -259,7 +264,7 @@ interface GooglePlaceDetail {
   vicinity: string;
 }
 
-interface Query<T = AutocompleteRequestType> {
+export interface Query<T = AutocompleteRequestType> {
   key: string;
   sessiontoken?: string;
   offset?: number;
@@ -273,7 +278,7 @@ interface Query<T = AutocompleteRequestType> {
   types?: T;
 }
 
-interface Styles {
+export interface Styles {
   container: StyleProp<ViewStyle>;
   description: StyleProp<TextStyle>;
   textInputContainer: StyleProp<ViewStyle>;
@@ -287,18 +292,18 @@ interface Styles {
   row: StyleProp<ViewStyle>;
 }
 
-interface Place {
+export interface Place {
   description: string;
   geometry: { location: Point };
 }
 
-interface RequestUrl {
+export interface RequestUrl {
   url: string;
   useOnPlatform: "web" | "all";
   headers?: Record<string, string>;
 }
 
-interface MapsAutocompleteProps {
+export interface MapsAutocompleteProps {
   debounce?: number;
   enableHighAccuracyLocation?: boolean;
   enablePoweredByContainer?: boolean;
@@ -315,14 +320,14 @@ interface MapsAutocompleteProps {
   inbetweenCompo?: React.ReactNode;
   isRowScrollable?: boolean;
   keyboardShouldPersistTaps?: "never" | "always" | "handled";
-  listEmptyComponent?: JSX.Element | React.ComponentType<{}>;
+  listEmptyComponent?: JSX.Element | React.ComponentType<undefined>;
   listUnderlayColor?: string;
   listViewDisplayed?: "auto" | boolean;
   minLength?: number;
   keepResultsAfterBlur?: boolean;
   nearbyPlacesAPI?: "GoogleReverseGeocoding" | "GooglePlacesSearch";
   numberOfLines?: number;
-  onFail?: (error?: any) => void;
+  onFail?: (error?: $TSFixMe) => void;
   onNotFound?: () => void;
   onPress?: (data: GooglePlaceData, detail: GooglePlaceDetail | null) => void;
   onTimeout?: () => void;
@@ -330,43 +335,43 @@ interface MapsAutocompleteProps {
   predefinedPlaces?: Place[];
   predefinedPlacesAlwaysVisible?: boolean;
   preProcess?: (text: string) => string;
-  query: Query | Object;
+  query: Query | object;
   renderDescription?: (description: DescriptionRow) => string;
-  renderHeaderComponent?: () => JSX.Element | React.ComponentType<{}>;
-  renderLeftButton?: () => JSX.Element | React.ComponentType<{}>;
-  renderRightButton?: () => JSX.Element | React.ComponentType<{}>;
+  renderHeaderComponent?: () => JSX.Element | React.ComponentType<undefined>;
+  renderLeftButton?: () => JSX.Element | React.ComponentType<undefined>;
+  renderRightButton?: () => JSX.Element | React.ComponentType<undefined>;
   renderRow?: (
     data: GooglePlaceData,
     index: number
-  ) => JSX.Element | React.ComponentType<{}>;
+  ) => JSX.Element | React.ComponentType<undefined>;
   requestUrl?: RequestUrl;
-  styles?: Partial<Styles> | Object;
+  styles?: Partial<Styles> | object;
   suppressDefaultStyles?: boolean;
   textInputHide?: boolean;
-  textInputProps?: TextInputProps | Object;
+  textInputProps?: TextInputProps | object;
   timeout?: number;
 }
 
 export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
-  (props: any, ref) => {
-    let _results: any[] = [];
-    let _requests: any[] = [];
-    const buildRowsFromResults = (results: any) => {
-      let res: any = [];
+  (props: $TSFixMe, ref) => {
+    let _results: $TSFixMe[] = [];
+    let _requests: $TSFixMe[] = [];
+    const buildRowsFromResults = (results: $TSFixMe) => {
+      let res: $TSFixMe = [];
       if (results.length === 0) {
         res = [
           ...props.predefinedPlaces.filter(
-            (place: any) => place?.description.length
+            (place: $TSFixMe) => place?.description.length
           ),
         ];
       }
-      res = res.map((place: any) => ({
+      res = res.map((place: $TSFixMe) => ({
         ...place,
         isPredefinedPlace: true,
       }));
       return [...res, ...results];
     };
-    const getRequestUrl = (requestUrl: any) => {
+    const getRequestUrl = (requestUrl: $TSFixMe) => {
       if (requestUrl) {
         if (requestUrl.useOnPlatform === "all") {
           return requestUrl.url;
@@ -381,10 +386,10 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
         return "https://maps.googleapis.com/maps/api";
       }
     };
-    const getRequestHeaders = (requestUrl: any) => {
+    const getRequestHeaders = (requestUrl: $TSFixMe) => {
       return requestUrl?.headers || {};
     };
-    const setRequestHeaders = (request: any, headers: any) => {
+    const setRequestHeaders = (request: $TSFixMe, headers: $TSFixMe) => {
       Object.keys(headers).map((headerKey) =>
         request.setRequestHeader(headerKey, headers[headerKey])
       );
@@ -395,7 +400,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
       props.listViewDisplayed === "auto" ? false : props.listViewDisplayed
     );
     const [url] = useState(getRequestUrl(props.requestUrl));
-    const inputRef = useRef<any>();
+    const inputRef = useRef<$TSFixMe>();
     useEffect(() => {
       _handleChangeText(stateText);
       return () => {
@@ -406,9 +411,9 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
     useEffect(() => {
       setDataSource(buildRowsFromResults([]));
     }, [props.predefinedPlaces]);
-    // @ts-expect-error - Type '{ setAddressText: (address: any) => void; getAddressText: () => string; blur: () => any; focus: () => any; isFocused: () => any; clear: () => any; }' is missing the following properties from type 'MapsAutocompleteProps': placeholder, queryts(2739) index.d.ts(1071, 79): The expected type comes from the return type of this signature.
+    // @ts-expect-error - Type '{ setAddressText: (address: $TSFixMe) => void; getAddressText: () => string; blur: () => $TSFixMe; focus: () => $TSFixMe; isFocused: () => $TSFixMe; clear: () => $TSFixMe; }' is missing the following properties from export type 'MapsAutocompleteProps': placeholder, queryts(2739) index.d.ts(1071, 79): The expected export type comes from the return export type of this signature.
     useImperativeHandle(ref, () => ({
-      setAddressText: (address: any) => {
+      setAddressText: (address: $TSFixMe) => {
         setStateText(address);
         _handleChangeText(address);
         setListViewDisplayed(true);
@@ -435,7 +440,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
         return true;
       }
     };
-    const _onPress = (rowData: any) => {
+    const _onPress = (rowData: $TSFixMe) => {
       if (rowData.isPredefinedPlace !== true && props.fetchDetails === true) {
         if (rowData.isLoading === true) {
           return;
@@ -500,12 +505,12 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
         setStateText(_renderDescription(rowData));
         _onBlur(null);
         delete rowData.isLoading;
-        let predefinedPlace = _getPredefinedPlace(rowData);
+        const predefinedPlace = _getPredefinedPlace(rowData);
         props.onPress(predefinedPlace, predefinedPlace);
       }
     };
-    const _enableRowLoader = (rowData: any) => {
-      let rows = buildRowsFromResults(_results);
+    const _enableRowLoader = (rowData: $TSFixMe) => {
+      const rows = buildRowsFromResults(_results);
       for (let i = 0; i < rows.length; i++) {
         if (
           rows[i].place_id === rowData.place_id ||
@@ -526,7 +531,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
       }
       setDataSource(buildRowsFromResults(_results));
     };
-    const _getPredefinedPlace = (rowData: any) => {
+    const _getPredefinedPlace = (rowData: $TSFixMe) => {
       if (rowData.isPredefinedPlace !== true) {
         return rowData;
       }
@@ -537,7 +542,10 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
       }
       return rowData;
     };
-    const _filterResultsByTypes = (unfilteredResults: any, types: any) => {
+    const _filterResultsByTypes = (
+      unfilteredResults: $TSFixMe,
+      types: $TSFixMe
+    ) => {
       if (types.length === 0) return unfilteredResults;
       const results: string[] = [];
       for (let i = 0; i < unfilteredResults.length; i++) {
@@ -625,7 +633,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
     const _getRowLoader = () => {
       return <ActivityIndicator animating={true} size="small" />;
     };
-    const _renderRowData = (rowData: any, index: number) => {
+    const _renderRowData = (rowData: $TSFixMe, index: number) => {
       if (props.renderRow) {
         return props.renderRow(rowData, index);
       }
@@ -644,13 +652,13 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
         </Text>
       );
     };
-    const _renderDescription = (rowData: any) => {
+    const _renderDescription = (rowData: $TSFixMe) => {
       if (props.renderDescription) {
         return props.renderDescription(rowData);
       }
       return rowData.description || rowData.formatted_address || rowData.name;
     };
-    const _renderLoader = (rowData: any) => {
+    const _renderLoader = (rowData: $TSFixMe) => {
       if (rowData.isLoading === true) {
         return <View style={[{}, props.styles.loader]}>{_getRowLoader()}</View>;
       }
@@ -679,7 +687,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
               style={[
                 {},
                 props.styles.row,
-                (rowData as Record<string, any>).isPredefinedPlace
+                (rowData as Record<string, $TSFixMe>).isPredefinedPlace
                   ? props.styles.specialItemRow
                   : {},
               ]}
@@ -706,18 +714,18 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
       relatedTarget,
       currentTarget,
     }: {
-      relatedTarget: any;
-      currentTarget: any;
+      relatedTarget: $TSFixMe;
+      currentTarget: $TSFixMe;
     }) => {
       if (!relatedTarget) return false;
-      var node = relatedTarget.parentNode;
+      let node = relatedTarget.parentNode;
       while (node) {
         if (node.id === "result-list-id") return true;
         node = node.parentNode;
       }
       return false;
     };
-    const _onBlur = (e: any) => {
+    const _onBlur = (e: $TSFixMe) => {
       if (e && isNewFocusInAutocompleteResultList(e)) return;
       if (!props.keepResultsAfterBlur) {
         setListViewDisplayed(false);
@@ -765,7 +773,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
       }
       return null;
     };
-    let {
+    const {
       onFocus,
       onBlur,
       onChangeText,
@@ -786,7 +794,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
               placeholder={props.placeholder}
               onFocus={
                 onFocus
-                  ? (e: any) => {
+                  ? (e: $TSFixMe) => {
                       _onFocus();
                       onFocus(e);
                     }
@@ -794,7 +802,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
               }
               onBlur={
                 onBlur
-                  ? (e: any) => {
+                  ? (e: $TSFixMe) => {
                       _onBlur(e);
                       onBlur(e);
                     }
@@ -816,7 +824,7 @@ export const MapsAutocomplete = React.forwardRef<MapsAutocompleteProps>(
 );
 
 MapsAutocomplete.defaultProps = {
-  // @ts-expect-error
+  // @ts-expect-error - Type '{ debounce: number; enableHighAccuracyLocation: boolean; fetchDetails: boolean; filterReverseGeocodingByTypes: never[]; GooglePlacesDetailsQuery: {}; GooglePlacesSearchQuery: { rankby: string; export type: string; }; ... 19 more ...; timeout: number; }' is not assignable to export type 'Partial<RefAttributes<MapsAutocompleteProps>>'.   Object literal may only specify known properties, and 'debounce' does not exist in export type 'Partial<RefAttributes<MapsAutocompleteProps>>'.ts(2322)
   debounce: 0,
   enableHighAccuracyLocation: true,
   fetchDetails: false,
@@ -835,9 +843,9 @@ MapsAutocomplete.defaultProps = {
   minLength: 0,
   nearbyPlacesAPI: "GooglePlacesSearch",
   numberOfLines: 1,
-  onFail: () => {},
-  onNotFound: () => {},
-  onPress: () => {},
+  onFail: () => undefined,
+  onNotFound: () => undefined,
+  onPress: () => undefined,
   onTimeout: () => console.warn("maps autocomplete: request timeout"),
   placeholder: "",
   predefinedPlaces: [],
@@ -853,8 +861,9 @@ MapsAutocomplete.defaultProps = {
 };
 
 MapsAutocomplete.propTypes = {
-  // @ts-expect-error
+  // @ts-expect-error - Type '{ debounce: PropTypes.Requireable<number>; enableHighAccuracyLocation: PropTypes.Requireable<boolean>; fetchDetails: PropTypes.Requireable<boolean>; ... 31 more ...; timeout: PropTypes.Requireable<...>; }' is not assignable to export type 'WeakValidationMap<RefAttributes<MapsAutocompleteProps>>'.   Object literal may only specify known properties, and 'debounce' does not exist in export type 'WeakValidationMap<RefAttributes<MapsAutocompleteProps>>'.ts(2322)   No quick fixes available
   debounce: PropTypes.number,
+  children: PropTypes.node,
   enableHighAccuracyLocation: PropTypes.bool,
   fetchDetails: PropTypes.bool,
   filterReverseGeocodingByTypes: PropTypes.array,
@@ -897,5 +906,7 @@ MapsAutocomplete.propTypes = {
   textInputProps: PropTypes.object,
   timeout: PropTypes.number,
 };
+
+MapsAutocomplete.displayName = "MapsAutocomplete";
 
 export default { MapsAutocomplete };

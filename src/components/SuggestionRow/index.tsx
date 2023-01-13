@@ -3,9 +3,7 @@ import { Text, View } from "react-native";
 import { styles } from "./index.styles";
 import Search from "/assets/icons/search.svg";
 
-const SuggestionRow = ({ item }) => {
-  const title = item.structured_formatting.main_text;
-  const address = item.structured_formatting.secondary_text;
+const SuggestionRow = ({ item }: { item: $TSFixMe }) => {
   const type = item.types[0];
   return (
     <View style={styles.row}>

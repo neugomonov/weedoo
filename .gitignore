@@ -64,6 +64,4 @@ buck-out/
 web-build/
 
 # Env
-environments.ts
-.env
-.env.local
+src/environments/index.ts

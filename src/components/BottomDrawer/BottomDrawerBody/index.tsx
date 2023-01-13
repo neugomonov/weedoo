@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Text, View } from "react-native";
 import { styles } from "./index.styles";
 import MarkerIcon from "/assets/icons/marker.svg";
@@ -23,15 +23,13 @@ const BottomDrawerBody = React.memo(() => {
       latitude: details?.geometry.location.lat || 0,
       longitude: details?.geometry.location.lng || 0,
     };
-    fetchedFormattedAddress(position);
     placeState.setPlace(position);
     const fetchedFormattedAddressRes = await fetchedFormattedAddress(position);
     reverseGeocodedPlaceState.setReverseGeocodedPlace(
       fetchedFormattedAddressRes
     );
   };
-  const onPrimaryButtonPress = async () => {
-    fetchedFormattedAddress(placeState.place);
+  const onPrimaryButtonPress: () => Promise<void> = async () => {
     reverseGeocodedPlaceState.setReverseGeocodedPlace(
       await fetchedFormattedAddress(placeState.place)
     );
@@ -63,5 +61,7 @@ const BottomDrawerBody = React.memo(() => {
     </View>
   );
 });
+
+BottomDrawerBody.displayName = "BottomDrawerBody";
 
 export default BottomDrawerBody;

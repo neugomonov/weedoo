@@ -49,3 +49,5 @@ export const InputLiner = React.forwardRef<
     </InsetShadow>
   );
 });
+
+InputLiner.displayName = "InputLiner";

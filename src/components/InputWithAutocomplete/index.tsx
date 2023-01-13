@@ -8,6 +8,7 @@ import {
   MapsAutocompleteRef,
 } from "/components/MapsAutocomplete";
 import SuggestionRow from "/components/SuggestionRow";
+import Constants from "expo-constants";
 
 export type InputWithAutocompleteProps = {
   textValue: string;
@@ -19,9 +20,9 @@ export const InputWithAutocomplete = React.forwardRef<
   MapsAutocompleteRef,
   InputWithAutocompleteProps
 >((props, ref) => {
-  const { textValue, onPlaceSelected, setClearIcon } = props;
+  const { onPlaceSelected, setClearIcon } = props;
   const pressHandler: MapsAutocompleteProps["onPress"] = (
-    _: any,
+    _: $TSFixMe,
     details = null
   ) => {
     onPlaceSelected(details);
@@ -34,7 +35,7 @@ export const InputWithAutocomplete = React.forwardRef<
         fetchDetails
         onPress={pressHandler}
         query={{
-          key: process.env.GOOGLE_API_KEY,
+          key: Constants!.expoConfig!.extra!.GOOGLE_API_KEY,
           language: "en",
         }}
         listEmptyComponent={() => (
@@ -45,7 +46,7 @@ export const InputWithAutocomplete = React.forwardRef<
         )}
         suppressDefaultStyles
         debounce={200}
-        renderRow={(item: any) => <SuggestionRow item={item} />}
+        renderRow={(item: $TSFixMe) => <SuggestionRow item={item} />}
         styles={styles}
         textInputProps={{
           onFocus: () => setClearIcon(true),
@@ -55,3 +56,5 @@ export const InputWithAutocomplete = React.forwardRef<
     </>
   );
 });
+
+InputWithAutocomplete.displayName = "InputWithAutocomplete";
