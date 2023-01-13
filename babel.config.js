@@ -24,6 +24,11 @@ module.exports = function (api) {
         'whitelist': null,
         'safe': false,
         'allowUndefined': true
+    }],
+    ["transform-inline-environment-variables", {
+      "include": [
+        "EXPO_GOOGLE_API_KEY"
+      ]
     }]
     ]
   }
