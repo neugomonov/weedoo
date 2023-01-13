@@ -5,7 +5,7 @@ import "dotenv/config";
 
 // the secrets created with eas secret:create will
 // be merged with process.env during eas builds
-const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+const EXPO_GOOGLE_API_KEY = process.env.EXPO_GOOGLE_API_KEY;
 
 export default {
   name: "wedo",
@@ -39,7 +39,7 @@ export default {
     favicon: "./src/assets/icons/favicon.png",
   },
   extra: {
-    GOOGLE_API_KEY: GOOGLE_API_KEY,
+    EXPO_GOOGLE_API_KEY: EXPO_GOOGLE_API_KEY,
     eas: {
       projectId: "d0499834-fcdc-4f8f-8430-9ca9ce87a8dd",
     },
@@ -47,8 +47,4 @@ export default {
   runtimeVersion: {
     policy: "sdkVersion",
   },
-  // * 👆 this should be:
-  // for development:   runtimeVersion: {    policy: "sdkVersion",  },
-  // for deploy:   runtimeVersion: "sdkVersion",
-  // 🥴
 };

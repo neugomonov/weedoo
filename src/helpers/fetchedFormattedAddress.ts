@@ -10,7 +10,7 @@ export const fetchedFormattedAddress = async (place: LatLng) => {
           "," +
           place.longitude +
           "&key=" +
-          Constants!.expoConfig!.extra!.GOOGLE_API_KEY
+          Constants!.expoConfig!.extra!.EXPO_GOOGLE_API_KEY
       );
       const res = (await reverseGeocodedPlace.json()).results[0]
         .formatted_address;
