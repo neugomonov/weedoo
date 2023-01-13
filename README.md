@@ -1,26 +1,20 @@
 <div align="center">
-	<h1>WeeDoo</h1>
-    👷‍♀️ wurk in prograss 
+<img src="src/assets/icons/adaptive-icon.png" width="200"/>
+<h1>WeeDoo</h1>
 
 WeDo is cool and good.
 
 <h2>Screenshots</h2>
-
-⚒  
-<img src="screenshots/screenshot1.png" width="405"/>  
-<img src="screenshots/screenshot2.png" width="405"/>  
-<img src="screenshots/screenshot3.png" width="405"/>  
-<img src="screenshots/screenshot4.png" width="405"/>
-<br>
-🤖 Android:  
-<img src="src/assets/icons/eas-update.svg"/>  
-  
-🍎 IOS:  
-<img src="src/assets/icons/eas-update (1os).svg"/>  
-⚒  
-There will be some assets 🖼  
-
+<img src="flow.gif"/>
+<br>  
 </div>
+
+## Expo  
+Scan the code. 🏁 Run the app! 🏃‍♂️  
+
+| 🤖 Android | 🍎 IOS |  
+|----|----| 
+| ![src/assets/icons/eas-update.svg](eas-update.svg) | ![src/assets/icons/eas-update.svg](eas-update-1os.svg) |
 
 ## Tech Stack
 
@@ -35,4 +29,5 @@ There will be some assets 🖼
 Poof, English now  
 Και τώρα ελληνικό. Απροσδόκητο, σωστά;  
 
-<b> hold up 👷‍♀️</b>
+<b> hold up 👷‍♀️ </b>
+
