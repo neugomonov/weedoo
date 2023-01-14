@@ -35,7 +35,7 @@ export const InputWithAutocomplete = React.forwardRef<
         fetchDetails
         onPress={pressHandler}
         query={{
-          key: Constants!.expoConfig!.extra!.GOOGLE_API_KEY,
+          key: Constants!.expoConfig!.extra!.EXPO_GOOGLE_API_KEY,
           language: "en",
         }}
         listEmptyComponent={() => (
